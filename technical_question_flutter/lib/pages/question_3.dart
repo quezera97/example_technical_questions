@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../dashboard.dart';
 import '../widget/generate_shape.dart';
+import '../widget/reuse_widget.dart';
 
 class Question3 extends StatefulWidget {
   const Question3({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class Question3 extends StatefulWidget {
 
 class _Question3State extends State<Question3> {
   final generateShape = GenerateShape();
+  final generateWidget = GenerateWidget();
 
   String selectedShape = '';
   bool passValidation = false;
@@ -56,45 +58,64 @@ class _Question3State extends State<Question3> {
     );
   }
 
-  void setStateValidation(bool validate){
+  void setStateValidation(bool validate) {
     setState(() {
       passValidation = validate;
     });
   }
 
-  void generateShapeAction(shape) {
-    if(int.parse(heightController.text) < 2){
-      setStateValidation(false);
-      
-      showValidationDialog('Please enter height more than 2');
-    } else if(int.parse(lengthController.text) < 2){
-      setStateValidation(false);
-      showValidationDialog('Please enter length more than 2');
-    }
-    else{
-      if (selectedShape == 'rectangle') {
-        if(int.parse(heightController.text) == int.parse(lengthController.text)){
-          setStateValidation(false);
-          showValidationDialog('Please enter length or height that is higher or lower than the other');
-        }
-        else{
-          setStateValidation(true);
-        }
+  void generateShapeAction(String shape) {
+    bool checkIsEmpty = false;
+    int? height, length;
 
-      } else if (selectedShape == 'square') {
-        if (int.parse(heightController.text) == int.parse(lengthController.text)) {
+    if (selectedShape == 'rectangle' || selectedShape == 'square') {
+      if (heightController.text.isEmpty && lengthController.text.isEmpty) {
+        checkIsEmpty = true;
+      } else {
+        height = int.tryParse(heightController.text);
+        length = int.tryParse(lengthController.text);
+      }
+    } else {
+      if (heightController.text.isEmpty) {
+        checkIsEmpty = true;
+      } else {
+        height = int.tryParse(heightController.text);
+      }
+    }
+
+    if (checkIsEmpty) {
+      setStateValidation(false);
+      showValidationDialog('Please enter valid dimensions');
+    } else {
+      if (height != null && length != null) {
+        if (height < 2 || length < 2) {
+          setStateValidation(false);
+          showValidationDialog('Dimensions should be greater than 2');
+        } else if (selectedShape == 'rectangle') {
+          if (height == length) {
+            setStateValidation(false);
+            showValidationDialog('Length or height should differ for a rectangle');
+          } else {
+            setStateValidation(true);
+          }
+        } else if (selectedShape == 'square') {
+          if (height == length) {
+            setStateValidation(true);
+          } else {
+            setStateValidation(false);
+            showValidationDialog('Square should have equal dimensions');
+          }
+        }
+      } else {
+        if (selectedShape == 'triangle' || selectedShape == 'diamond') {
           setStateValidation(true);
         } else {
           setStateValidation(false);
-          showValidationDialog('Square must have similar dimensions of Height and Length');
         }
-      } else {
-        setStateValidation(true);
       }
     }
 
     String uppercasedShape = shape.toUpperCase();
-
     if (passValidation) {
       showDialog(
         context: context,
@@ -102,7 +123,7 @@ class _Question3State extends State<Question3> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text('$uppercasedShape shape is shown. Do you want to choose another shape?'),
-            content: returnGeneratedShape(),
+            content: SingleChildScrollView(child: SizedBox(child: SingleChildScrollView(scrollDirection: Axis.horizontal, child: returnGeneratedShape()))),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
@@ -133,65 +154,60 @@ class _Question3State extends State<Question3> {
       appBar: AppBar(
         title: const Text('Question 3'),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            PopupMenuButton<String>(
-              onSelected: selectShape,
-              itemBuilder: (BuildContext context) {
-                return [
-                  'rectangle',
-                  'square',
-                  'triangle',
-                  'diamond',
-                ].map((String shape) {
-                  return PopupMenuItem(
-                    value: shape,
-                    child: Text(shape.capitalizeFirst()),
-                  );
-                }).toList();
-              },
-              child: Container(
-                color: Colors.blue,
-                height: 50,
-                child: const Text('Choose a Shape'),
+      body: Padding(
+        padding: const EdgeInsets.all(10.5),
+        child: Center(
+          child: Column(
+            children: [
+              PopupMenuButton<String>(
+                onSelected: selectShape,
+                itemBuilder: (BuildContext context) {
+                  return [
+                    'rectangle',
+                    'square',
+                    'triangle',
+                    'diamond',
+                  ].map((String shape) {
+                    return PopupMenuItem(
+                      value: shape,
+                      child: Text(shape.capitalizeFirst()),
+                    );
+                  }).toList();
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(12.0), // Rounded corners
+                  ),
+                  height: 50,
+                  child: const Center(
+                    child: Text(
+                      'Choose a shape',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold, // Make text bold
+                      ),
+                    ),
+                  ),
+                ),
               ),
-            ),
-            if (selectedShape == 'rectangle' || selectedShape == 'square') ... [
-              TextFormField(
-                controller: heightController,
-                decoration: const InputDecoration(labelText: 'Height'),
-                keyboardType: TextInputType.number,
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r"[0-9]")),
-                ],
-              ),
-              TextFormField(
-                controller: lengthController,
-                decoration: const InputDecoration(labelText: 'Length'),
-                keyboardType: TextInputType.number,
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r"[0-9]")),
-                ],
-              ),
+              if (selectedShape == 'rectangle' || selectedShape == 'square') ...[
+                generateWidget.createTextFormField(heightController, 'Height', 'Enter Height', (p0) => null, [FilteringTextInputFormatter.allow(RegExp(r"[0-9]"))], TextInputType.number),
+                generateWidget.createTextFormField(lengthController, 'Length', 'Enter Length', (p0) => null, [FilteringTextInputFormatter.allow(RegExp(r"[0-9]"))], TextInputType.number),
+              ] else if (selectedShape == 'triangle' || selectedShape == 'diamond') ...[
+                generateWidget.createTextFormField(heightController, 'Height', 'Enter Height', (p0) => null, [FilteringTextInputFormatter.allow(RegExp(r"[0-9]"))], TextInputType.number),
+              ],
+              if (selectedShape != '') ...[
+                ElevatedButton(
+                  onPressed: () {
+                    generateShapeAction(selectedShape);
+                  },
+                  child: const Text('Generate Shape'),
+                ),
+              ],
             ],
-            if (selectedShape == 'triangle' || selectedShape == 'diamond') ... [
-              TextFormField(
-                controller: heightController,
-                decoration: const InputDecoration(labelText: 'Height'),
-                keyboardType: TextInputType.number,
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r"[0-9]")),
-                ],
-              ),
-            ],
-            ElevatedButton(
-              onPressed: () {
-                generateShapeAction(selectedShape);
-              },
-              child: const Text('Generate Shape'),
-            ),
-          ],
+          ),
         ),
       ),
     );
