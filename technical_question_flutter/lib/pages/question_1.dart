@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import '../widget/reuse_widget.dart';
+import 'solutions_functions.dart';
 
 class Question1 extends StatefulWidget {
   const Question1({super.key});
@@ -13,7 +14,7 @@ class Question1 extends StatefulWidget {
 }
 
 class _Question1State extends State<Question1> {
-  final generateButton = GenerateWidget();
+  final generateWidget = GenerateWidget();
 
   List<int> lengthOfArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   int sizeOfArray = 0;
@@ -27,10 +28,12 @@ class _Question1State extends State<Question1> {
   }
 
   String calcDigit(digitArr) {
+    //check if contains '9' it will return that digit
     if (digitArr.contains('9')) {
       return digitArr;
     }
 
+    //check if divisible by 2 it return that digit, otherwise it will return 'Odd'
     if (int.parse(digitArr) % 2 == 0) {
       return digitArr;
     } else {
@@ -46,10 +49,8 @@ class _Question1State extends State<Question1> {
         ),
         body: Padding(
           padding: const EdgeInsets.all(10.5),
-          child: SingleChildScrollView(
             child: Center(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Padding(
                     padding: EdgeInsets.all(15),
@@ -63,6 +64,14 @@ class _Question1State extends State<Question1> {
                     ''',
                     ),
                   ),
+                  generateWidget.createSimpleButton('Solutions and Functions', () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SolutionsFunctions(
+                        title: 'Question 1',
+                      )),
+                    );
+                  }),
                   const SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -86,7 +95,7 @@ class _Question1State extends State<Question1> {
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.blue,
-                          borderRadius: BorderRadius.circular(12.0), // Rounded corners
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
                         height: 50,
                         child: const Center(
@@ -95,7 +104,7 @@ class _Question1State extends State<Question1> {
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
-                              fontWeight: FontWeight.bold, // Make text bold
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
@@ -103,11 +112,12 @@ class _Question1State extends State<Question1> {
                     ),
                   ),
                   if (sizeOfArray > 0) ...[
-                    generateButton.createSimpleButton('Generate Number', () {
+                    generateWidget.createSimpleButton('Generate Number', () {
                       arrDigit = [];
                       numberContainingNine = '';
                       containsNine = false;
           
+                      //let user to generate number with selected size of array (limit it)
                       Random random = Random();
                       for (int i = 0; i < sizeOfArray; i++) {
                         int randomNumber = random.nextInt(100);
@@ -140,6 +150,7 @@ class _Question1State extends State<Question1> {
                             var checkListForNine = calcDigit(digitArr);
           
                             if (!containsNine) {
+                              //if does not contain '9' it will show the text below with the digits
                               if (checkListForNine.contains('9')) {
                                 containsNine = true;
                                 numberContainingNine = checkListForNine;
@@ -150,6 +161,7 @@ class _Question1State extends State<Question1> {
                                 subtitle: Text('Output: $checkListForNine'),
                               );
                             } else {
+                              //if contain '9' it will stop looping and show which digits will be excluded 
                               return ListTile(
                                 title: Text('Number $digitArr excluded due to $numberContainingNine'),
                               );
@@ -162,7 +174,6 @@ class _Question1State extends State<Question1> {
                 ],
               ),
             ),
-          ),
         ));
   }
 }

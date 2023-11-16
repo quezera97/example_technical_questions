@@ -4,6 +4,7 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import '../dashboard.dart';
 import '../widget/generate_shape.dart';
 import '../widget/reuse_widget.dart';
+import 'solutions_functions.dart';
 
 class Question3 extends StatefulWidget {
   const Question3({Key? key}) : super(key: key);
@@ -109,7 +110,13 @@ class _Question3State extends State<Question3> {
         }
       } else {
         if (selectedShape == 'triangle' || selectedShape == 'diamond') {
-          setStateValidation(true);
+          if (height! < 2) {
+            setStateValidation(false);
+            showValidationDialog('Height should be greater than 2');
+          }
+          else{
+            setStateValidation(true);
+          }
         } else {
           setStateValidation(false);
         }
@@ -128,7 +135,11 @@ class _Question3State extends State<Question3> {
             actions: <Widget>[
               TextButton(
                 onPressed: () {
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Dashboard()));
+                  Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Dashboard()),
+                  (Route<dynamic> route) => false,
+                );
                 },
                 child: const Text('Close'),
               ),
@@ -175,6 +186,14 @@ class _Question3State extends State<Question3> {
                   ''',
                   ),
                 ),
+                generateWidget.createSimpleButton('Solutions and Functions', () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SolutionsFunctions(
+                        title: 'Question 3',
+                      )),
+                    );
+                  }),
                 const SizedBox(height: 10),
                 PopupMenuButton<String>(
                   onSelected: selectShape,
@@ -194,7 +213,7 @@ class _Question3State extends State<Question3> {
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.blue,
-                      borderRadius: BorderRadius.circular(12.0), // Rounded corners
+                      borderRadius: BorderRadius.circular(12.0),
                     ),
                     height: 50,
                     child: const Center(
@@ -203,7 +222,7 @@ class _Question3State extends State<Question3> {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
-                          fontWeight: FontWeight.bold, // Make text bold
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),

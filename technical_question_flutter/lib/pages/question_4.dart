@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:math_expressions/math_expressions.dart';
 
+import '../widget/reuse_widget.dart';
+import 'solutions_functions.dart';
+
 class Question4 extends StatefulWidget {
   const Question4({Key? key}) : super(key: key);
 
@@ -10,11 +13,13 @@ class Question4 extends StatefulWidget {
 }
 
 class _Question4State extends State<Question4> {
+  final generateWidget = GenerateWidget();
   String result = "0";
   String expression = "";
 
   void input(String input) {
     setState(() {
+      //check input and change from symbol to math expression
       if (input == '÷') {
         expression = expression + input;
         expression = expression.replaceAll('÷', '/');
@@ -32,6 +37,7 @@ class _Question4State extends State<Question4> {
         }
       } else if (input == '=') {
         try {
+          //parse it into math expression using library
           Parser p = Parser();
           Expression exp = p.parse(expression);
 
@@ -79,17 +85,25 @@ class _Question4State extends State<Question4> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Padding(
-                  padding: EdgeInsets.all(15),
-                  child: HtmlWidget(
-                  '''
-                  <h3>Create a programme for a calculator that includes</h3>
-                  <ol>
-                    <li>Features to calculate basic mathematical operations (addition +, subtraction -, multiplication*, division /)</li>
-                    <li>Calculate a given mathematical equation correctly. e.g. 5 + 2 - 3 * 2 / 3 = 5</li>
-                  </ol>
-                  ''',
-                  ),
+                padding: EdgeInsets.all(15),
+                child: HtmlWidget(
+                '''
+                <h3>Create a programme for a calculator that includes</h3>
+                <ol>
+                  <li>Features to calculate basic mathematical operations (addition +, subtraction -, multiplication*, division /)</li>
+                  <li>Calculate a given mathematical equation correctly. e.g. 5 + 2 - 3 * 2 / 3 = 5</li>
+                </ol>
+                ''',
                 ),
+              ),
+              generateWidget.createSimpleButton('Solutions and Functions', () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SolutionsFunctions(
+                    title: 'Question 4',
+                  )),
+                );
+              }),
               const SizedBox(height: 10),
               Text(
                 result,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import '../widget/reuse_widget.dart';
+import 'solutions_functions.dart';
 
 class Question2 extends StatefulWidget {
   const Question2({super.key});
@@ -45,15 +46,26 @@ class _Question2State extends State<Question2> {
     if (value.isNotEmpty) {
       value = value.toLowerCase();
 
+      /** 
+       * this function break into 5 steps
+       * 1. check each and every character from the text that user key in
+       * 2. if no special character or blank space found it will concantenate one each other
+       * 3. if found, it will stop concantenate and get the word and insert into the array
+       * 4. then, it will restart again (which is initialize the word to empty) (repeat step no.2)
+       * 5. when all text checked, it will make a loop to check which of the word in th earray is longer
+      **/
       for (int i = 0; i < value.length; i++) {
         String char = value[i];
 
+        //it will check the vowel
         if (char == 'a' || char == 'e' || char == 'i' || char == 'o' || char == 'u') {
           countEachVowel++;
           oneCharVowel[char] = (oneCharVowel[char] ?? 0) + 1;
 
           wordConstructed += char;
-        } else if (char.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>_-\s]'))) {
+        } 
+        //it will check special character
+        else if (char.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>_-\s]'))) {
           countEachSpecialChar++;
           // ignore: unrelated_type_equality_checks
           if (char == RegExp(r'[\s]') || char == ' ') {
@@ -64,13 +76,17 @@ class _Question2State extends State<Question2> {
 
           listOfLongestWord.add(wordConstructed);
           wordConstructed = '';
-        } else if (char.contains(RegExp(r'[0-9]'))) {
+        } 
+        //it will check numbers
+        else if (char.contains(RegExp(r'[0-9]'))) {
           countEachNumber++;
           oneCharNumber[char] = (oneCharNumber[char] ?? 0) + 1;
 
           listOfLongestWord.add(wordConstructed);
           wordConstructed = '';
-        } else {
+        } 
+        //it will check other than above which is consonant
+        else {
           countEachConsonant++;
           oneCharConsonant[char] = (oneCharConsonant[char] ?? 0) + 1;
 
@@ -78,10 +94,12 @@ class _Question2State extends State<Question2> {
         }
       }
 
+      //the last word in the text will be added to the array
       if (wordConstructed.isNotEmpty) {
         listOfLongestWord.add(wordConstructed);
       }
 
+      //it will check which is longer than other from the array
       for (var word in listOfLongestWord) {
         if (word.length > longestWordinList.length) {
           longestWordinList = word;
@@ -126,7 +144,16 @@ class _Question2State extends State<Question2> {
                 ''',
                 ),
               ),
+              generateWidget.createSimpleButton('Solutions and Functions', () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SolutionsFunctions(
+                        title: 'Question 2',
+                      )),
+                    );
+                  }),
               const SizedBox(height: 10),
+              //user can enter own's word and press submit to check the occurence and longest word and display them
               generateWidget.createTextFormField(inputText, '', 'Enter your words here', checkString, null, TextInputType.text),
               generateWidget.createListTile('Occurence of Vowel: $countEachVowel', 'List of Vowel: $oneCharVowel', 15.6),
               generateWidget.createListTile('Occurence of Special Character: $countEachSpecialChar', 'List of Special Character: $oneCharSpecialChar', 15.6),
