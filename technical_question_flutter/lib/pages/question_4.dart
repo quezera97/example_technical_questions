@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:math_expressions/math_expressions.dart';
 
 class Question4 extends StatefulWidget {
@@ -73,116 +74,131 @@ class _Question4State extends State<Question4> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              result,
-              style: const TextStyle(fontSize: 24),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              expression,
-              style: const TextStyle(fontSize: 18),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                customButton('Del', () {
-                  input('Del');
-                }),
-                customButton('AC', () {
-                  input('AC');
-                }),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    customButton('+', () {
-                      input('+');
-                    }),
-                    customButton('-', () {
-                      input('-');
-                    }),
-                    customButton('x', () {
-                      input('x');
-                    }),
-                    customButton('÷', () {
-                      input('÷');
-                    }),
-                  ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Padding(
+                  padding: EdgeInsets.all(15),
+                  child: HtmlWidget(
+                  '''
+                  <h3>Create a programme for a calculator that includes</h3>
+                  <ol>
+                    <li>Features to calculate basic mathematical operations (addition +, subtraction -, multiplication*, division /)</li>
+                    <li>Calculate a given mathematical equation correctly. e.g. 5 + 2 - 3 * 2 / 3 = 5</li>
+                  </ol>
+                  ''',
+                  ),
                 ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    customButton('1', () {
-                      input('1');
-                    }),
-                    customButton('2', () {
-                      input('2');
-                    }),
-                    customButton('3', () {
-                      input('3');
-                    }),
-                    
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    customButton('4', () {
-                      input('4');
-                    }),
-                    customButton('5', () {
-                      input('5');
-                    }),
-                    customButton('6', () {
-                      input('6');
-                    }),
-                    
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    customButton('7', () {
-                      input('7');
-                    }),
-                    customButton('8', () {
-                      input('8');
-                    }),
-                    customButton('9', () {
-                      input('9');
-                    }),
-                    
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    customButton('.', () {
-                      input('.');
-                    }),
-                    customButton('0', () {
-                      input('0');
-                    }),
-                    customButton('=', () {
-                      input('=');
-                    }),
-                  ],
-                ),
-              ],
-            ),
-          ],
+              const SizedBox(height: 10),
+              Text(
+                result,
+                style: const TextStyle(fontSize: 24),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                expression,
+                style: const TextStyle(fontSize: 18),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  customButton('Del', () {
+                    input('Del');
+                  }),
+                  customButton('AC', () {
+                    input('AC');
+                  }),
+                ],
+              ),
+              const SizedBox(height: 5),
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      customButton('+', () {
+                        input('+');
+                      }),
+                      customButton('-', () {
+                        input('-');
+                      }),
+                      customButton('x', () {
+                        input('x');
+                      }),
+                      customButton('÷', () {
+                        input('÷');
+                      }),
+                    ],
+                  ),
+                  const SizedBox(height: 5),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      customButton('1', () {
+                        input('1');
+                      }),
+                      customButton('2', () {
+                        input('2');
+                      }),
+                      customButton('3', () {
+                        input('3');
+                      }),
+                      
+                    ],
+                  ),
+                  const SizedBox(height: 5),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      customButton('4', () {
+                        input('4');
+                      }),
+                      customButton('5', () {
+                        input('5');
+                      }),
+                      customButton('6', () {
+                        input('6');
+                      }),
+                      
+                    ],
+                  ),
+                  const SizedBox(height: 5),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      customButton('7', () {
+                        input('7');
+                      }),
+                      customButton('8', () {
+                        input('8');
+                      }),
+                      customButton('9', () {
+                        input('9');
+                      }),
+                      
+                    ],
+                  ),
+                  const SizedBox(height: 5),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      customButton('.', () {
+                        input('.');
+                      }),
+                      customButton('0', () {
+                        input('0');
+                      }),
+                      customButton('=', () {
+                        input('=');
+                      }),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

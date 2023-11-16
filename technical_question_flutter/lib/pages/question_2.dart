@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import '../widget/reuse_widget.dart';
 
@@ -24,6 +25,8 @@ class _Question2State extends State<Question2> {
   Map<String, int> oneCharSpecialChar = {};
 
   String longestWordinList = '';
+  String wordConstructed = '';
+  List<String> listOfLongestWord = [];
 
   void checkString(String value) {
     countEachVowel = 0;
@@ -35,9 +38,9 @@ class _Question2State extends State<Question2> {
     oneCharSpecialChar = {};
     oneCharNumber = {};
     longestWordinList = '';
+    wordConstructed = '';
+    listOfLongestWord = [];
 
-    String longestWord = '';
-    List<String> listOfLongestWord = [];
 
     if (value.isNotEmpty) {
       value = value.toLowerCase();
@@ -49,7 +52,7 @@ class _Question2State extends State<Question2> {
           countEachVowel++;
           oneCharVowel[char] = (oneCharVowel[char] ?? 0) + 1;
 
-          longestWord = longestWord + char;
+          wordConstructed += char;
         } else if (char.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>_-\s]'))) {
           countEachSpecialChar++;
           // ignore: unrelated_type_equality_checks
@@ -59,20 +62,24 @@ class _Question2State extends State<Question2> {
 
           oneCharSpecialChar[char] = (oneCharSpecialChar[char] ?? 0) + 1;
 
-          listOfLongestWord.add(longestWord);
-          longestWord = '';
+          listOfLongestWord.add(wordConstructed);
+          wordConstructed = '';
         } else if (char.contains(RegExp(r'[0-9]'))) {
           countEachNumber++;
           oneCharNumber[char] = (oneCharNumber[char] ?? 0) + 1;
 
-          listOfLongestWord.add(longestWord);
-          longestWord = '';
+          listOfLongestWord.add(wordConstructed);
+          wordConstructed = '';
         } else {
           countEachConsonant++;
           oneCharConsonant[char] = (oneCharConsonant[char] ?? 0) + 1;
 
-          longestWord = longestWord + char;
+          wordConstructed += char;
         }
+      }
+
+      if (wordConstructed.isNotEmpty) {
+        listOfLongestWord.add(wordConstructed);
       }
 
       for (var word in listOfLongestWord) {
@@ -80,8 +87,6 @@ class _Question2State extends State<Question2> {
           longestWordinList = word;
         }
       }
-
-      print(listOfLongestWord);
 
       setState(() {
         countEachVowel;
@@ -105,15 +110,31 @@ class _Question2State extends State<Question2> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.5),
-        child: Column(
-          children: [
-            generateWidget.createTextFormField(inputText, '', 'Enter your words here', checkString, null, TextInputType.text),
-            generateWidget.createListTile('Occurence of Vowel: $countEachVowel', 'List of Vowel: $oneCharVowel', 15.6),
-            generateWidget.createListTile('Occurence of Special Character: $countEachSpecialChar', 'List of Special Character: $oneCharSpecialChar', 15.6),
-            generateWidget.createListTile('Occurence of Consonant: $countEachConsonant', 'List of Consonant: $oneCharConsonant', 15.6),
-            generateWidget.createListTile('Occurence of Number: $countEachNumber', 'List of Number: $oneCharNumber', 15.6),
-            generateWidget.createListTile('The longest word in the given words is:', longestWordinList, 15.6),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(15),
+                child: HtmlWidget(
+                '''
+                <h3> Create a function that accepts a string of varying length and does the following:</h3>
+                <ol>
+                  <li>Group the characters in the string into three categories - vowels (A, E, I, O, U), consonants(alphabets other than vowels), and special characters (non-alphabets)</li>
+                  <li>Display the number of occurrences of each character in the string</li>
+                  <li>Display the longest word in the string</li>
+                </ol>
+                ''',
+                ),
+              ),
+              const SizedBox(height: 10),
+              generateWidget.createTextFormField(inputText, '', 'Enter your words here', checkString, null, TextInputType.text),
+              generateWidget.createListTile('Occurence of Vowel: $countEachVowel', 'List of Vowel: $oneCharVowel', 15.6),
+              generateWidget.createListTile('Occurence of Special Character: $countEachSpecialChar', 'List of Special Character: $oneCharSpecialChar', 15.6),
+              generateWidget.createListTile('Occurence of Consonant: $countEachConsonant', 'List of Consonant: $oneCharConsonant', 15.6),
+              generateWidget.createListTile('Occurence of Number: $countEachNumber', 'List of Number: $oneCharNumber', 15.6),
+              generateWidget.createListTile('The longest word in the given words is:', longestWordinList, 15.6),
+            ],
+          ),
         ),
       ),
     );

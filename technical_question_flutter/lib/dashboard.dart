@@ -20,42 +20,59 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard'),
+        title: const Text('Technical Questions'),
       ),
-      body: Center(
-        child: Column(children: [
-          generateWidget.createSimpleButton('Question 1', () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const Question1()),
-            );
-          }),
-          //longest word dalam question 2 x buat lagi
-          generateWidget.createSimpleButton('Question 2', () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const Question2()),
-            );
-          }),
-          generateWidget.createSimpleButton('Question 3', () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const Question3()),
-            );
-          }),
-          generateWidget.createSimpleButton('Question 4', () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const Question4()),
-            );
-          }),
-          generateWidget.createSimpleButton('Question 5', () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const Question4()),
-            );
-          }),
-        ]),
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10.5),
+            child: GridView.count(
+              childAspectRatio: 3.0,
+              crossAxisCount: 2,
+              children: [
+                generateWidget.createSimpleButton('Question 1', () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Question1()),
+                  );
+                }),
+                generateWidget.createSimpleButton('Question 2', () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Question2()),
+                  );
+                }),
+                generateWidget.createSimpleButton('Question 3', () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Question3()),
+                  );
+                }),
+                generateWidget.createSimpleButton('Question 4', () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Question4()),
+                  );
+                }),
+                generateWidget.createSimpleButton('Question 5', () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Question4()),
+                  );
+                }),
+              ].map((button) {
+                return GridTile(
+                  child: SizedBox(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: button,
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import '../dashboard.dart';
 import '../widget/generate_shape.dart';
 import '../widget/reuse_widget.dart';
@@ -123,7 +124,7 @@ class _Question3State extends State<Question3> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text('$uppercasedShape shape is shown. Do you want to choose another shape?'),
-            content: SingleChildScrollView(child: SizedBox(child: SingleChildScrollView(scrollDirection: Axis.horizontal, child: returnGeneratedShape()))),
+            content: Center(child: SingleChildScrollView(child: SizedBox(child: SingleChildScrollView(scrollDirection: Axis.horizontal, child: returnGeneratedShape())))),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
@@ -156,57 +157,74 @@ class _Question3State extends State<Question3> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.5),
-        child: Center(
-          child: Column(
-            children: [
-              PopupMenuButton<String>(
-                onSelected: selectShape,
-                itemBuilder: (BuildContext context) {
-                  return [
-                    'rectangle',
-                    'square',
-                    'triangle',
-                    'diamond',
-                  ].map((String shape) {
-                    return PopupMenuItem(
-                      value: shape,
-                      child: Text(shape.capitalizeFirst()),
-                    );
-                  }).toList();
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(12.0), // Rounded corners
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(15),
+                  child: HtmlWidget(
+                  '''
+                  <h3>Create a short program that displays a 2D shape - e.g square, triangle, and circle.</h3>
+                  <ol>
+                    <li>Allow users to key in the shape to display, e.g. "Square".</li>
+                    <li>Ask the user for the size of the shape, draw the shape according to the size.</li>
+                    <li>Display the shape according to the user's input</li>
+                    <li>Allow users to decide when to quit the program</li>
+                  </ol>
+                  ''',
                   ),
-                  height: 50,
-                  child: const Center(
-                    child: Text(
-                      'Choose a shape',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold, // Make text bold
+                ),
+                const SizedBox(height: 10),
+                PopupMenuButton<String>(
+                  onSelected: selectShape,
+                  itemBuilder: (BuildContext context) {
+                    return [
+                      'rectangle',
+                      'square',
+                      'triangle',
+                      'diamond',
+                    ].map((String shape) {
+                      return PopupMenuItem(
+                        value: shape,
+                        child: Text(shape.capitalizeFirst()),
+                      );
+                    }).toList();
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(12.0), // Rounded corners
+                    ),
+                    height: 50,
+                    child: const Center(
+                      child: Text(
+                        'Choose a shape',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold, // Make text bold
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              if (selectedShape == 'rectangle' || selectedShape == 'square') ...[
-                generateWidget.createTextFormField(heightController, 'Height', 'Enter Height', (p0) => null, [FilteringTextInputFormatter.allow(RegExp(r"[0-9]"))], TextInputType.number),
-                generateWidget.createTextFormField(lengthController, 'Length', 'Enter Length', (p0) => null, [FilteringTextInputFormatter.allow(RegExp(r"[0-9]"))], TextInputType.number),
-              ] else if (selectedShape == 'triangle' || selectedShape == 'diamond') ...[
-                generateWidget.createTextFormField(heightController, 'Height', 'Enter Height', (p0) => null, [FilteringTextInputFormatter.allow(RegExp(r"[0-9]"))], TextInputType.number),
+                if (selectedShape == 'rectangle' || selectedShape == 'square') ...[
+                  generateWidget.createTextFormField(heightController, 'Height', 'Enter Height', (p0) => null, [FilteringTextInputFormatter.allow(RegExp(r"[0-9]"))], TextInputType.number),
+                  generateWidget.createTextFormField(lengthController, 'Length', 'Enter Length', (p0) => null, [FilteringTextInputFormatter.allow(RegExp(r"[0-9]"))], TextInputType.number),
+                ] else if (selectedShape == 'triangle' || selectedShape == 'diamond') ...[
+                  generateWidget.createTextFormField(heightController, 'Height', 'Enter Height', (p0) => null, [FilteringTextInputFormatter.allow(RegExp(r"[0-9]"))], TextInputType.number),
+                ],
+                if (selectedShape != '') ...[
+                  ElevatedButton(
+                    onPressed: () {
+                      generateShapeAction(selectedShape);
+                    },
+                    child: const Text('Generate Shape'),
+                  ),
+                ],
               ],
-              if (selectedShape != '') ...[
-                ElevatedButton(
-                  onPressed: () {
-                    generateShapeAction(selectedShape);
-                  },
-                  child: const Text('Generate Shape'),
-                ),
-              ],
-            ],
+            ),
           ),
         ),
       ),
