@@ -49,12 +49,12 @@ class _Question1State extends State<Question1> {
         ),
         body: Padding(
           padding: const EdgeInsets.all(10.5),
-            child: Center(
-              child: Column(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.all(15),
-                    child: HtmlWidget(
+          child: Center(
+            child: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(15),
+                  child: HtmlWidget(
                     '''
                     <h3>Create a function that accepts an array of integers, do the following:</h3>
                     <ol>
@@ -62,118 +62,121 @@ class _Question1State extends State<Question1> {
                       <li>Stop the loop if the number '9' is encountered</li>
                     </ol>
                     ''',
-                    ),
                   ),
-                  generateWidget.createSimpleButton('Solutions and Functions', () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const SolutionsFunctions(
-                        title: 'Question 1',
-                      )),
-                    );
-                  }),
-                  const SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: PopupMenuButton<int>(
-                      onSelected: (int value) {
-                        numberContainingNine = '';
-                        containsNine = false;
-          
-                        setState(() {
-                          sizeOfArray = value;
-                        });
-                      },
-                      itemBuilder: (BuildContext context) {
-                        return lengthOfArray.map((int value) {
-                          return PopupMenuItem<int>(
-                            value: value,
-                            child: Text(value.toString()),
-                          );
-                        }).toList();
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        height: 50,
-                        child: const Center(
-                          child: Text(
-                            'Choose the length of Array',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
+                ),
+                generateWidget.createSimpleButton('Solutions and Functions', () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SolutionsFunctions(title: 'Question 1', listOfImg: [
+                              'assets/question_1/1.png',
+                              'assets/question_1/2.png',
+                              'assets/question_1/3.png',
+                            ])),
+                  );
+                }),
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: PopupMenuButton<int>(
+                    onSelected: (int value) {
+                      numberContainingNine = '';
+                      containsNine = false;
+
+                      setState(() {
+                        sizeOfArray = value;
+                      });
+                    },
+                    itemBuilder: (BuildContext context) {
+                      return lengthOfArray.map((int value) {
+                        return PopupMenuItem<int>(
+                          value: value,
+                          child: Text(value.toString()),
+                        );
+                      }).toList();
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      height: 50,
+                      child: const Center(
+                        child: Text(
+                          'Choose the length of Array',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
                     ),
                   ),
-                  if (sizeOfArray > 0) ...[
-                    generateWidget.createSimpleButton('Generate Number', () {
-                      arrDigit = [];
-                      numberContainingNine = '';
-                      containsNine = false;
-          
-                      //let user to generate number with selected size of array (limit it)
-                      Random random = Random();
-                      for (int i = 0; i < sizeOfArray; i++) {
-                        int randomNumber = random.nextInt(100);
-                        arrDigit.add(randomNumber);
-                      }
-          
-                      setState(() {
-                        arrDigit;
-                      });
-                    }),
-                  ],
-                  if (arrDigit.isNotEmpty) ...[
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Card(
-                        child: Text(
-                          arrDigit.toString(),
-                          style: const TextStyle(fontSize: 22),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.5),
-                        child: ListView.builder(
-                          itemCount: arrDigit.length,
-                          itemBuilder: (context, index) {
-                            var digitArr = arrDigit[index].toString();
-          
-                            var checkListForNine = calcDigit(digitArr);
-          
-                            if (!containsNine) {
-                              //if does not contain '9' it will show the text below with the digits
-                              if (checkListForNine.contains('9')) {
-                                containsNine = true;
-                                numberContainingNine = checkListForNine;
-                              }
-          
-                              return ListTile(
-                                title: Text('Number from Array: $digitArr'),
-                                subtitle: Text('Output: $checkListForNine'),
-                              );
-                            } else {
-                              //if contain '9' it will stop looping and show which digits will be excluded 
-                              return ListTile(
-                                title: Text('Number $digitArr excluded due to $numberContainingNine'),
-                              );
-                            }
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
+                ),
+                if (sizeOfArray > 0) ...[
+                  generateWidget.createSimpleButton('Generate Number', () {
+                    arrDigit = [];
+                    numberContainingNine = '';
+                    containsNine = false;
+
+                    //let user to generate number with selected size of array (limit it)
+                    Random random = Random();
+                    for (int i = 0; i < sizeOfArray; i++) {
+                      int randomNumber = random.nextInt(100);
+                      arrDigit.add(randomNumber);
+                    }
+
+                    setState(() {
+                      arrDigit;
+                    });
+                  }),
                 ],
-              ),
+                if (arrDigit.isNotEmpty) ...[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      child: Text(
+                        arrDigit.toString(),
+                        style: const TextStyle(fontSize: 22),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.5),
+                      child: ListView.builder(
+                        itemCount: arrDigit.length,
+                        itemBuilder: (context, index) {
+                          var digitArr = arrDigit[index].toString();
+
+                          var checkListForNine = calcDigit(digitArr);
+
+                          if (!containsNine) {
+                            //if does not contain '9' it will show the text below with the digits
+                            if (checkListForNine.contains('9')) {
+                              containsNine = true;
+                              numberContainingNine = checkListForNine;
+                            }
+
+                            return ListTile(
+                              title: Text('Number from Array: $digitArr'),
+                              subtitle: Text('Output: $checkListForNine'),
+                            );
+                          } else {
+                            //if contain '9' it will stop looping and show which digits will be excluded
+                            return ListTile(
+                              title: Text('Number $digitArr excluded due to $numberContainingNine'),
+                            );
+                          }
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ],
             ),
+          ),
         ));
   }
 }

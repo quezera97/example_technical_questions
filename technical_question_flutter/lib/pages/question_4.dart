@@ -32,7 +32,7 @@ class _Question4State extends State<Question4> {
       } else if (input == 'Del') {
         if (expression == "") {
           expression = "";
-        } else{
+        } else {
           expression = expression.substring(0, expression.length - 1);
         }
       } else if (input == '=') {
@@ -46,8 +46,8 @@ class _Question4State extends State<Question4> {
         } catch (e) {
           result = "Error";
         }
-      } else if(input == '.'){
-        if(expression == ""){
+      } else if (input == '.') {
+        if (expression == "") {
           expression = '${expression}0.';
         }
       } else {
@@ -56,7 +56,7 @@ class _Question4State extends State<Question4> {
     });
   }
 
-  Widget customButton(String text, Function() onPressed) {
+  Widget calculatorButton(String text, Function() onPressed) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ElevatedButton(
@@ -87,7 +87,7 @@ class _Question4State extends State<Question4> {
               const Padding(
                 padding: EdgeInsets.all(15),
                 child: HtmlWidget(
-                '''
+                  '''
                 <h3>Create a programme for a calculator that includes</h3>
                 <ol>
                   <li>Features to calculate basic mathematical operations (addition +, subtraction -, multiplication*, division /)</li>
@@ -99,9 +99,10 @@ class _Question4State extends State<Question4> {
               generateWidget.createSimpleButton('Solutions and Functions', () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const SolutionsFunctions(
-                    title: 'Question 4',
-                  )),
+                  MaterialPageRoute(
+                      builder: (context) => const SolutionsFunctions(title: 'Question 4', listOfImg: [
+                            'assets/question_4/1.png',
+                          ])),
                 );
               }),
               const SizedBox(height: 10),
@@ -118,10 +119,10 @@ class _Question4State extends State<Question4> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  customButton('Del', () {
+                  calculatorButton('Del', () {
                     input('Del');
                   }),
-                  customButton('AC', () {
+                  calculatorButton('AC', () {
                     input('AC');
                   }),
                 ],
@@ -132,16 +133,16 @@ class _Question4State extends State<Question4> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      customButton('+', () {
+                      calculatorButton('+', () {
                         input('+');
                       }),
-                      customButton('-', () {
+                      calculatorButton('-', () {
                         input('-');
                       }),
-                      customButton('x', () {
+                      calculatorButton('x', () {
                         input('x');
                       }),
-                      customButton('÷', () {
+                      calculatorButton('÷', () {
                         input('÷');
                       }),
                     ],
@@ -150,61 +151,58 @@ class _Question4State extends State<Question4> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      customButton('1', () {
+                      calculatorButton('1', () {
                         input('1');
                       }),
-                      customButton('2', () {
+                      calculatorButton('2', () {
                         input('2');
                       }),
-                      customButton('3', () {
+                      calculatorButton('3', () {
                         input('3');
                       }),
-                      
                     ],
                   ),
                   const SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      customButton('4', () {
+                      calculatorButton('4', () {
                         input('4');
                       }),
-                      customButton('5', () {
+                      calculatorButton('5', () {
                         input('5');
                       }),
-                      customButton('6', () {
+                      calculatorButton('6', () {
                         input('6');
                       }),
-                      
                     ],
                   ),
                   const SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      customButton('7', () {
+                      calculatorButton('7', () {
                         input('7');
                       }),
-                      customButton('8', () {
+                      calculatorButton('8', () {
                         input('8');
                       }),
-                      customButton('9', () {
+                      calculatorButton('9', () {
                         input('9');
                       }),
-                      
                     ],
                   ),
                   const SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      customButton('.', () {
+                      calculatorButton('.', () {
                         input('.');
                       }),
-                      customButton('0', () {
+                      calculatorButton('0', () {
                         input('0');
                       }),
-                      customButton('=', () {
+                      calculatorButton('=', () {
                         input('=');
                       }),
                     ],

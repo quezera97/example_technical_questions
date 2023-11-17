@@ -42,7 +42,6 @@ class _Question2State extends State<Question2> {
     wordConstructed = '';
     listOfLongestWord = [];
 
-
     if (value.isNotEmpty) {
       value = value.toLowerCase();
 
@@ -63,7 +62,7 @@ class _Question2State extends State<Question2> {
           oneCharVowel[char] = (oneCharVowel[char] ?? 0) + 1;
 
           wordConstructed += char;
-        } 
+        }
         //it will check special character
         else if (char.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>_-\s]'))) {
           countEachSpecialChar++;
@@ -76,7 +75,7 @@ class _Question2State extends State<Question2> {
 
           listOfLongestWord.add(wordConstructed);
           wordConstructed = '';
-        } 
+        }
         //it will check numbers
         else if (char.contains(RegExp(r'[0-9]'))) {
           countEachNumber++;
@@ -84,7 +83,7 @@ class _Question2State extends State<Question2> {
 
           listOfLongestWord.add(wordConstructed);
           wordConstructed = '';
-        } 
+        }
         //it will check other than above which is consonant
         else {
           countEachConsonant++;
@@ -134,7 +133,7 @@ class _Question2State extends State<Question2> {
               const Padding(
                 padding: EdgeInsets.all(15),
                 child: HtmlWidget(
-                '''
+                  '''
                 <h3> Create a function that accepts a string of varying length and does the following:</h3>
                 <ol>
                   <li>Group the characters in the string into three categories - vowels (A, E, I, O, U), consonants(alphabets other than vowels), and special characters (non-alphabets)</li>
@@ -145,13 +144,15 @@ class _Question2State extends State<Question2> {
                 ),
               ),
               generateWidget.createSimpleButton('Solutions and Functions', () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const SolutionsFunctions(
-                        title: 'Question 2',
-                      )),
-                    );
-                  }),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SolutionsFunctions(title: 'Question 2', listOfImg: [
+                            'assets/question_2/1.png',
+                            'assets/question_2/2.png',
+                          ])),
+                );
+              }),
               const SizedBox(height: 10),
               //user can enter own's word and press submit to check the occurence and longest word and display them
               generateWidget.createTextFormField(inputText, '', 'Enter your words here', checkString, null, TextInputType.text),

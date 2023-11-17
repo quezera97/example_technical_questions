@@ -113,8 +113,7 @@ class _Question3State extends State<Question3> {
           if (height! < 2) {
             setStateValidation(false);
             showValidationDialog('Height should be greater than 2');
-          }
-          else{
+          } else {
             setStateValidation(true);
           }
         } else {
@@ -136,10 +135,10 @@ class _Question3State extends State<Question3> {
               TextButton(
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Dashboard()),
-                  (Route<dynamic> route) => false,
-                );
+                    context,
+                    MaterialPageRoute(builder: (context) => const Dashboard()),
+                    (Route<dynamic> route) => false,
+                  );
                 },
                 child: const Text('Close'),
               ),
@@ -175,7 +174,7 @@ class _Question3State extends State<Question3> {
                 const Padding(
                   padding: EdgeInsets.all(15),
                   child: HtmlWidget(
-                  '''
+                    '''
                   <h3>Create a short program that displays a 2D shape - e.g square, triangle, and circle.</h3>
                   <ol>
                     <li>Allow users to key in the shape to display, e.g. "Square".</li>
@@ -187,13 +186,15 @@ class _Question3State extends State<Question3> {
                   ),
                 ),
                 generateWidget.createSimpleButton('Solutions and Functions', () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const SolutionsFunctions(
-                        title: 'Question 3',
-                      )),
-                    );
-                  }),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SolutionsFunctions(title: 'Question 3', listOfImg: [
+                              'assets/question_3/1.png',
+                              'assets/question_3/2.png',
+                            ])),
+                  );
+                }),
                 const SizedBox(height: 10),
                 PopupMenuButton<String>(
                   onSelected: selectShape,

@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'random_color.dart';
+
 class GenerateWidget {
+  Color excludeWhiteColor() {
+    Color bgColor = getRandomColor();
+
+    while (bgColor == Colors.white) {
+      return bgColor = getRandomColor();
+    }
+
+    return bgColor;
+  }
+
   Widget createSimpleButton(String textButton, VoidCallback functionCallBack) {
     return ElevatedButton(
       onPressed: functionCallBack,
@@ -9,6 +21,7 @@ class GenerateWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(25.0),
         ),
+        backgroundColor: excludeWhiteColor(),
       ),
       child: Text(
         textButton,

@@ -9,18 +9,13 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
         <style>
             .gradient-custom {
-                /* fallback for old browsers */
-                background: #f093fb;
-                
-                /* Chrome 10-25, Safari 5.1-6 */
-                background: -webkit-linear-gradient(to bottom right, rgba(240, 147, 251, 1), rgba(245, 87, 108, 1));
-                
-                /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-                background: linear-gradient(to bottom right, rgba(240, 147, 251, 1), rgba(245, 87, 108, 1))
-                }
+                background: -webkit-linear-gradient(to bottom right, rgb(43, 185, 225), rgba(245, 87, 108, 1));
+                background: linear-gradient(to bottom right, rgba(43, 185, 225  ), rgba(245, 87, 108, 1))
+            }
                 
             .card-registration .select-input.form-control[readonly]:not([disabled]) {
                 font-size: 1rem;
@@ -40,7 +35,9 @@
                     <div class="col-12 col-lg-9 col-xl-7">
                         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                             <div class="card-body p-4 p-md-5">
-                                <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+                                <h3 id="guest_name">Welcome Back, The Chosen One</h3>
+                                <br>
+                                <h5 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h5>
                                 <form>
                                     <div class="row">
                                         <div class="col-md-6 mb-4">
@@ -155,8 +152,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">YES</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button id="confirm-register" type="button" class="btn btn-success">YES</button>
+                        <button id="no-register" type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
                     </div>
                 </div>
             </div>
@@ -166,7 +163,17 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
         <script>
             $(document).ready(function () {
+                var localFirstName = localStorage.getItem('first_name');
+                var localLastName = localStorage.getItem('last_name');
+                if(localFirstName != null && localLastName != null){
+                    $('#guest_name').text('Hello,' + localFirstName + ' ' + localLastName);
+                }
+
+                var registerForm = {};
+                
                 $("#register-button").click(function (e) {
+                    localStorage.clear();
+
                     var first_name = $('#firstName').val();
                     var last_name = $('#lastName').val();
                     var gender = $('input[name=genderOptions]:checked').val();
@@ -181,7 +188,7 @@
                     $('#modal-phone').text(phone);
                     $('#modal-subscription').text(subscription);
 
-                    var registerForm = {
+                    registerForm = {
                         first_name: first_name,
                         last_name: last_name,
                         gender: gender,
@@ -192,6 +199,24 @@
 
                     $("#show-details").modal('show');
                 });
+
+                $('#no-register').click(function (e){
+                    $('#guest_name').text('Are you not ' + $('#firstName').val() + ' ' + $('#lastName').val() + '?');
+                })
+
+                $('#confirm-register').click(function (e) {
+                    for (var key in registerForm) {
+                        if (registerForm.hasOwnProperty(key)) {
+                            var value = registerForm[key];
+                            
+                            localStorage.setItem(key, value);
+                        }
+                    }
+
+                    $("#show-details").modal('hide');
+
+                    window.location.href = "dashboard.html";
+                })
             });
         </script>
     </body>

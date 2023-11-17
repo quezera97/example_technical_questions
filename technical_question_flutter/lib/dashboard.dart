@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
-import 'pages/intermission.dart';
-import 'pages/question5.dart';
+import 'pages/intermission_question_5.dart';
 import 'pages/question_1.dart';
 import 'pages/question_2.dart';
 import 'pages/question_3.dart';
@@ -35,13 +34,13 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   final generateWidget = GenerateWidget();
-  InAppWebViewController? webView;  
+  InAppWebViewController? webView;
 
   Future<void> loadHTMLFromAssets() async {
-  await webView?.loadFile(
-    assetFilePath: "assets/question_5/question_5.html",
-  );
-} 
+    await webView?.loadFile(
+      assetFilePath: "assets/question_5/question_5.html",
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,8 +85,7 @@ class _DashboardState extends State<Dashboard> {
                     );
                   }),
                   generateWidget.createSimpleButton('Question 5', () async {
-                    
-                   Navigator.push(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => IntermissionQuestion5()),
                     );

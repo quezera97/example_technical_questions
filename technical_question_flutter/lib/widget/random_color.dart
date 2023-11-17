@@ -1,0 +1,67 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+
+Color getRandomColor() {
+  Random random = Random();
+  List<Color> colors = [
+    Colors.red,
+    Colors.blue,
+    Colors.green,
+    Colors.yellow,
+    Colors.orange,
+    Colors.purple,
+    Colors.teal,
+    Colors.pink,
+    Colors.cyan,
+    Colors.deepPurple,
+    Colors.amber,
+    Colors.indigo,
+    Colors.lime,
+    Colors.lightBlue,
+    Colors.deepOrange,
+    Colors.brown,
+    Colors.grey,
+    Colors.tealAccent,
+    Colors.blueGrey,
+    Colors.lightGreen,
+    Colors.limeAccent,
+    Colors.orangeAccent,
+    Colors.deepPurpleAccent,
+    Colors.amberAccent,
+    Colors.cyanAccent,
+    Colors.indigoAccent,
+    Colors.lightBlueAccent,
+    Colors.deepOrangeAccent,
+    Colors.lightGreenAccent,
+    Colors.limeAccent,
+    Colors.pinkAccent,
+    Colors.purpleAccent,
+    Colors.redAccent,
+    Colors.yellowAccent,
+    Colors.greenAccent,
+    Colors.brown,
+    Colors.grey,
+    Colors.black,
+    Colors.white,
+    Colors.pink.shade200,
+    Colors.teal.shade200,
+    Colors.blue.shade200,
+    Colors.green.shade200,
+    Colors.purple.shade200,
+    Colors.orange.shade200,
+    Colors.red.shade200,
+    Colors.yellow.shade200,
+    Colors.deepPurple.shade200,
+    Colors.amber.shade200,
+    Colors.indigo.shade200,
+    Colors.lime.shade200,
+    Colors.lightBlue.shade200,
+    Colors.deepOrange.shade200,
+    Colors.grey.shade200,
+    Colors.cyan.shade200,
+  ];
+
+  int index = random.nextInt(colors.length - 1);
+  return colors[index];
+}
