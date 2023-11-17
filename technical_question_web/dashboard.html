@@ -434,14 +434,11 @@
                                 if (selectShape == 'square') {
                                     for (var i = 0; i < height; i++) {
                                         var row = '';
-
                                         for (var j = 0; j < length; j++) {
                                             row += '*';
                                         }
-
                                         shapeString += row + '\n';
                                     }
-
                                     $('#shape').val(shapeString);
                                 } 
                                 else if (selectShape == 'triangle') {
@@ -451,60 +448,47 @@
                                         for (var j = 0; j < height - i - 1; j++) {
                                             row += ' ';
                                         }
-
                                         row += '';
 
                                         for (var j = 0; j <= i; j++) {
                                             row += '*';
                                         }
-                                        
                                         for (var j = 0; j < i; j++) {
                                             row += '*';
                                         }
-
                                         shapeString += row + '\n';
                                     }
-
                                     $('#shape').val(shapeString);
                                 }
                                 else if (selectShape == 'diamond') {
                                     for (var i = 0; i < height; i++) {
                                         var row = '';
-
                                         for (var j = 0; j < height - i; j++) {
                                             row += ' ';
                                         }
-
                                         for (var j = 0; j <= i; j++) {
                                             row += '*';
                                         }
-                                        
                                         for (var j = 0; j < i; j++) {
                                             row += '*';
                                         }
-
                                         shapeString += row + '\n';
                                     }                                    
 
 
                                     for (var i = height; i > 0; i--) {
                                         var row = '';
-
                                         for (var j = 0; j < height - i; j++) {
                                             row += ' ';
                                         }
-
                                         for (var j = 0; j <= i; j++) {
                                             row += '*';
                                         }
-
                                         for (var j = 0; j < i; j++) {
                                             row += '*';
                                         }
-
                                         shapeString += row + '\n';
                                     }
-
                                     $('#shape').val(shapeString);
                                 }
                                 else {
