@@ -156,6 +156,9 @@ class _Question2State extends State<Question2> {
               const SizedBox(height: 10),
               //user can enter own's word and press submit to check the occurence and longest word and display them
               generateWidget.createTextFormField(inputText, '', 'Enter your words here', checkString, null, TextInputType.text),
+
+              const Text('*Press Enter or Done after completing the sentence'),
+
               generateWidget.createListTile('Occurence of Vowel: $countEachVowel', 'List of Vowel: $oneCharVowel', 15.6),
               generateWidget.createListTile('Occurence of Special Character: $countEachSpecialChar', 'List of Special Character: $oneCharSpecialChar', 15.6),
               generateWidget.createListTile('Occurence of Consonant: $countEachConsonant', 'List of Consonant: $oneCharConsonant', 15.6),
