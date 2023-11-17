@@ -124,10 +124,112 @@
                             <div class="team-content">
                                 <h3>Question 1</h3>
                                 <br>    
-                                <button class="lets_go-button">Let's Go</button>
+                                <button id="lets_go-question_1" class="lets_go-button">Let's Go</button>
                             </div>
                         </div>
-                    </div>														
+                    </div>
+                    <div id="show-question_1" class="modal" tabindex="-1" role="dialog" data-bs-backdrop='static' data-bs-keyboard="false">
+                        <div class="modal-dialog modal-md" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Question 1</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <h3>Enter Any Number</h3>
+                                        <div class="col-3">
+                                            <div class="form-outline mb-3">
+                                                <input type="number" id="array_number_1" class="form-control form-control-lg" />
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-outline mb-3">
+                                                <input type="number" id="array_number_2" class="form-control form-control-lg" />
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-outline mb-3">
+                                                <input type="number" id="array_number_3" class="form-control form-control-lg" />
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-outline mb-3">
+                                                <input type="number" id="array_number_4" class="form-control form-control-lg" />
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-outline mb-3">
+                                                <input type="number" id="array_number_5" class="form-control form-control-lg" />
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-outline mb-3">
+                                                <input type="number" id="array_number_6" class="form-control form-control-lg" />
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-outline mb-3">
+                                                <input type="number" id="array_number_7" class="form-control form-control-lg" />
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-outline mb-3">
+                                                <input type="number" id="array_number_8" class="form-control form-control-lg" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <button id="generate_number" type="button" class="btn btn-primary">Generate</button>
+                                    <br>
+                                    <br>
+                                    <div class="row">
+                                        <h5>The answer to the Question 1 is: </h5>
+                                        <h3 id="answer-question_1"></h3>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $(document).ready(function () {
+                            var listOfNumbers = [];
+
+                            $('#lets_go-question_1').click(function(){
+                                $("#show-question_1").modal('show');
+                            });
+
+                            $('#generate_number').click(function(e) {
+                                listOfNumbers = [];
+                                var arrNumbers = [];
+
+                                for (var i = 1; i <= 8; i++) {
+                                    var value = $('#array_number_' + i).val();
+                                    if (value != '') {
+                                        arrNumbers.push(value);
+                                    }
+                                }
+                                
+                                if (arrNumbers.length > 0) {
+                                    for (const number of arrNumbers) {
+                                        if (/\d*9\d*/.test(number)) {
+                                            break;
+                                        }
+                                        else if(number % 2 || number == 0) {
+                                            listOfNumbers.push(' Odd');
+                                        }
+                                        else{
+                                            listOfNumbers.push(' ' + number);
+                                        }
+                                    }
+                                }
+
+                                $("#answer-question_1").text(listOfNumbers);
+                            });
+                        });
+                    </script>
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="our-team">
                             <div class="team_img">
