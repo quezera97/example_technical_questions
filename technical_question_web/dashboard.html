@@ -18,9 +18,7 @@
             }
 
             .team_member {
-                padding-top: 50px;
-                padding-bottom: 50px;
-                overflow: hidden;
+                padding-top: 20px;
             }
 
             .our-team {
@@ -32,22 +30,7 @@
                 position: relative;
                 overflow: hidden;
                 height: 200px;
-            }
-
-            .our-team .team_img:after {
-                content: "";
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.2);
-                position: absolute;
-                bottom: -100%;
-                left: 0;
-                transition: all 0.3s ease;
-            }
-
-            .our-team:hover .team_img:after {
-                bottom: 0;
-            }
+            }        
 
             .our-team img {
                 width: 100%;
@@ -55,37 +38,10 @@
             }
 
             .our-team .team-content {
-                padding: 20px 0;
+                padding: 10px 0;
                 background: #fff;
             }
 
-            @media only screen and (max-width: 990px) {
-                .our-team {
-                    margin-bottom: 30px;
-                }
-            }
-
-            .our-team .social {
-                position: absolute;
-                top: -100%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                padding: 20px;
-                font-size: 18px;
-                color: #fff;
-                border: none;
-                border-radius: 50%;
-                background-color: #ff7700;
-                box-shadow: 0 0 20px rgba(255, 170, 23, 0.7);
-                transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-                z-index: 1;
-            }
-
-            .our-team:hover .social {
-                top: 50%;
-            }
-
-            .social:hover,
             .lets_go-button:hover {
                 background-color: #b962b9;
                 color: white;
@@ -110,7 +66,7 @@
         <section id="team" class="vh-100 team_member gradient-custom">
             <div class="container">
                 <h3>Hello, <span id="guest_name">Guest</span></h3>
-                <div class="section-title text-center">
+                <div class="section-title text-center ">
                     <h1>Technical Questions</h1>
                     <p>Collection of Technical Questions</p>
                 </div>				
@@ -120,7 +76,6 @@
                         <div class="our-team">
                             <div class="team_img">
                                 <img src="https://pbs.twimg.com/media/EwoF1y8WEAUtVC8?format=jpg&name=large" alt="Question 1">
-                                <button class="social">Solutions</button>
                             </div>
                             <div class="team-content">
                                 <h3>Question 1</h3>
@@ -140,51 +95,47 @@
                                         <h3>Enter Any Number</h3>
                                         <div class="col-3">
                                             <div class="form-outline mb-3">
-                                                <input type="number" id="array_number_1" class="form-control form-control-lg" />
+                                                <input type="number" id="array_number_1" class="form-control form-control-lg input_number" />
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="form-outline mb-3">
-                                                <input type="number" id="array_number_2" class="form-control form-control-lg" />
+                                                <input type="number" id="array_number_2" class="form-control form-control-lg input_number" />
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="form-outline mb-3">
-                                                <input type="number" id="array_number_3" class="form-control form-control-lg" />
+                                                <input type="number" id="array_number_3" class="form-control form-control-lg input_number" />
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="form-outline mb-3">
-                                                <input type="number" id="array_number_4" class="form-control form-control-lg" />
+                                                <input type="number" id="array_number_4" class="form-control form-control-lg input_number" />
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="form-outline mb-3">
-                                                <input type="number" id="array_number_5" class="form-control form-control-lg" />
+                                                <input type="number" id="array_number_5" class="form-control form-control-lg input_number" />
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="form-outline mb-3">
-                                                <input type="number" id="array_number_6" class="form-control form-control-lg" />
+                                                <input type="number" id="array_number_6" class="form-control form-control-lg input_number" />
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="form-outline mb-3">
-                                                <input type="number" id="array_number_7" class="form-control form-control-lg" />
+                                                <input type="number" id="array_number_7" class="form-control form-control-lg input_number" />
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="form-outline mb-3">
-                                                <input type="number" id="array_number_8" class="form-control form-control-lg" />
+                                                <input type="number" id="array_number_8" class="form-control form-control-lg input_number" />
                                             </div>
                                         </div>
                                     </div>
                                     <br>
-                                    <button id="generate_number" type="button" class="btn btn-primary">Generate</button>
-                                    <br>
-                                    <br>
                                     <div class="row">
-                                        <h5>The answer to the Question 1 is: </h5>
                                         <h3 id="answer-question_1"></h3>
                                     </div>
                                 </div>
@@ -202,7 +153,7 @@
                                 $("#show-question_1").modal('show');
                             });
 
-                            $('#generate_number').click(function(e) {
+                            $('.input_number').on('input', function(e) {
                                 listOfNumbers = [];
                                 var arrNumbers = [];
 
@@ -237,7 +188,6 @@
                         <div class="our-team">
                             <div class="team_img">
                                 <img src="https://undergradeasier.com/wp-content/uploads/2019/03/2-Question-Marks.png" alt="Question 2">
-                                <button class="social">Solutions</button>
                             </div>
                             <div class="team-content">
                                 <h3>Question 2</h3>
@@ -369,7 +319,6 @@
                         <div class="our-team">
                             <div class="team_img">
                                 <img src="https://alhambrapreservationgroup.files.wordpress.com/2014/06/magnifying-q3.jpg" alt="Question 3">
-                                <button class="social">Solutions</button>
                             </div>
                             <div class="team-content">
                                 <h3>Question 3</h3>
@@ -570,7 +519,6 @@
                         <div class="our-team">
                             <div class="team_img">
                                 <img src="https://knowyourteam.com/blog/wp-content/uploads/2020/04/Untitled_Artwork-8-1024x429.png" alt="Question 4">
-                                <button class="social">Solutions</button>
                             </div>
                             <div class="team-content">
                                 <h3>Question 4</h3>
@@ -706,7 +654,6 @@
                         <div class="our-team">
                             <div class="team_img">
                                 <img src="https://media.istockphoto.com/id/1389647308/photo/red-number-5-and-question-mark-written-white-cube-sitting-before-defocused-background.jpg?s=2048x2048&w=is&k=20&c=nRPyzYzZfY__f1PWQk7KpMdCPw6lxeHTj4IP2bETx3M=" alt="Question 5">
-                                <button class="social">Solutions</button>
                             </div>
                             <div class="team-content">
                                 <h3>Question 5</h3>
