@@ -232,7 +232,7 @@
                         });
                     </script>
 
-                    <!-- Question 2 -->
+                    <!-- Question 2 (Done) -->
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="our-team">
                             <div class="team_img">
@@ -364,7 +364,7 @@
                         });
                     </script>
 
-                    <!-- Question 3 -->
+                    <!-- Question 3 (Done) -->
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="our-team">
                             <div class="team_img">
@@ -565,7 +565,7 @@
                         });
                     </script>
 
-                    <!-- Question 4 -->
+                    <!-- Question 4 (Done) -->
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="our-team">
                             <div class="team_img">
@@ -587,6 +587,43 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="row">
+                                        <label for="input_calculator" class="form-label">Calc :</label>
+                                        <div class="form-outline mb-3">
+                                            <input id="input_calculator" class="form-control form-control-lg"/>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <button id="delete" class="btn btn-primary calculator_operator">Del</button>
+                                            </div>
+                                            <div class="col-4">
+                                                <button id="reset" class="btn btn-primary calculator_operator">AC</button>
+                                            </div>
+                                            <div class="col-4">
+                                                <button id="calculate" class="btn btn-primary calculator_operator">=</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <button id="plus" value="+" class="btn btn-primary calculator_operator">+</button>
+                                            </div>
+                                            <div class="col-3">
+                                                <button id="minus" value="-" class="btn btn-primary calculator_operator">-</button>
+                                            </div>
+                                            <div class="col-3">
+                                                <button id="times" value="*" class="btn btn-primary calculator_operator">x</button>
+                                            </div>
+                                            <div class="col-3">
+                                                <button id="divide" value="/" class="btn btn-primary calculator_operator">÷</button>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                    <label for="output_calculator" class="form-label">Output :</label>
+                                    <div class="form-outline mb-3">
+                                        <input id="output_calculator" class="form-control form-control-lg" readonly/>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -596,11 +633,72 @@
                         </div>
                     </div>
                     <script>
-                        $(document).ready(function () {
+                       $(document).ready(function () {
+                            var filteredInput = '';
+                            var totalValue = '';
+
                             $('#lets_go-question_4').click(function(){
                                 $("#show-question_4").modal('show');
                             });
+                            
+                            $('#reset').click(function(){
+                                $('#input_calculator').val('');
+                                $('#output_calculator').val('');
+                            });
+
+                            $('#delete').click(function(){
+                                filteredInput = filteredInput.substring(0, filteredInput.length - 1);
+                                $('#input_calculator').val(filteredInput);
+                                $('#output_calculator').val(filteredInput);
+                            });
+
+                            $('#input_calculator').keyup(function () {
+                                var input = $(this).val();
+                                filteredInput = input.replace(/[^\d*/+-]/g, '');
+                                $('#input_calculator').val(filteredInput);
+                                $('#output_calculator').val(filteredInput);
+                            });
+
+                            function handleOperatorClick(value) {
+                                var operators = ['+', '-', '*', '/'];
+                                var lastChar = filteredInput.substr(filteredInput.length - 1);
+
+                                if (!operators.includes(lastChar)) {
+                                    filteredInput += value;
+                                }
+
+                                $('#input_calculator').val(filteredInput);
+                                $('#output_calculator').val(filteredInput);
+                            }
+
+
+                            $('#plus').click(function () {
+                                handleOperatorClick('+');                               
+                            });
+
+                            $('#minus').click(function () {
+                                handleOperatorClick('-');
+                            });
+
+                            $('#times').click(function () {
+                                handleOperatorClick('*');
+                            });
+
+                            $('#divide').click(function () {
+                                handleOperatorClick('/');
+                            });
+
+                            $('.calculator_operator').click(function () {
+                                $('#input_calculator').focus();
+                            })
+
+
+                            $('#calculate').click(function () {
+                                totalValue = eval(filteredInput);
+                                $('#output_calculator').val(totalValue);
+                            })
                         });
+
                     </script>
                     
                     <!-- Question 5 (Done) -->
