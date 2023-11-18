@@ -18,7 +18,7 @@
             <div class="container">
                 <h3 id="guest_name">Hello, Guest</h3>
                 <div class="logInIntruders">
-                    <button id="lets_go-question_5" class="lets_go-button">Intruders, Please Log In!!</button>
+                    <button id="register-button" class="lets_go-button">Intruders, Please Register Yourself!!</button>
                 </div>
                 <div class="section-title text-center checkIntruders">
                     <h1>Technical Questions</h1>
@@ -299,18 +299,18 @@
                             </div>
                         </div>
                     </div>
-                    <script>
-                        $(document).ready(function(){
-                            $('#lets_go-question_5').click(function (e) {
-                                location.replace("index.html");
-                            })
-                        });
-                    </script>
                 </div>
             </div>
         </section>
 
         <script src="script.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('#lets_go-question_5, #register-button').click(function (e) {
+                    location.replace("index.html");
+                })
+            });
+        </script>
     </body>
 </html>
 
