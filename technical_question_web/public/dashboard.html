@@ -11,71 +11,25 @@
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
-        <style>
-            .gradient-custom {
-                background: -webkit-linear-gradient(to bottom right, rgb(43, 185, 225), rgba(245, 87, 108, 1));
-                background: linear-gradient(to bottom right, rgba(43, 185, 225), rgba(245, 87, 108, 1));
-            }
-
-            .team_member {
-                padding-top: 20px;
-            }
-
-            .our-team {
-                margin-bottom: 30px;
-                box-shadow: 0 10px 40px -10px rgba(0, 64, 128, .09);
-            }
-
-            .our-team .team_img {
-                position: relative;
-                overflow: hidden;
-                height: 200px;
-            }        
-
-            .our-team img {
-                width: 100%;
-                height: 100%;
-            }
-
-            .our-team .team-content {
-                padding: 10px 0;
-                background: #fff;
-            }
-
-            .lets_go-button:hover {
-                background-color: #b962b9;
-                color: white;
-                box-shadow: 0 0 20px rgba(185, 99, 185, 0.7);
-            }
-
-            .lets_go-button {
-                padding: 10px 20px;
-                font-size: 16px;
-                color: #fff;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                transition: background-color 0.3s ease, box-shadow 0.3s ease;
-                background-color: #ff7700;
-                box-shadow: 0 0 20px rgba(255, 170, 23, 0.7);
-            }
-
-        </style>
+        <link rel="stylesheet" type="text/css" href="assets/style/style.css">
     </head>
     <body>
         <section id="team" class="vh-100 team_member gradient-custom">
             <div class="container">
-                <h3>Hello, <span id="guest_name">Guest</span></h3>
-                <div class="section-title text-center ">
+                <h3 id="guest_name">Hello, Guest</h3>
+                <div class="logInIntruders">
+                    <button id="lets_go-question_5" class="lets_go-button">Intruders, Please Log In!!</button>
+                </div>
+                <div class="section-title text-center checkIntruders">
                     <h1>Technical Questions</h1>
                     <p>Collection of Technical Questions</p>
                 </div>				
-                <div class="row text-center">
+                <div class="row text-center checkIntruders">
                     <!-- Question 1 (Done) -->
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="our-team">
                             <div class="team_img">
-                                <img src="https://pbs.twimg.com/media/EwoF1y8WEAUtVC8?format=jpg&name=large" alt="Question 1">
+                                <img src="assets/img/question_1.jpg" alt="Question 1">
                             </div>
                             <div class="team-content">
                                 <h3>Question 1</h3>
@@ -145,49 +99,13 @@
                             </div>
                         </div>
                     </div>
-                    <script>
-                        $(document).ready(function () {
-                            var listOfNumbers = [];
-
-                            $('#lets_go-question_1').click(function(){
-                                $("#show-question_1").modal('show');
-                            });
-
-                            $('.input_number').on('input', function(e) {
-                                listOfNumbers = [];
-                                var arrNumbers = [];
-
-                                for (var i = 1; i <= 8; i++) {
-                                    var value = $('#array_number_' + i).val();
-                                    if (value != '') {
-                                        arrNumbers.push(value);
-                                    }
-                                }
-                                
-                                if (arrNumbers.length > 0) {
-                                    for (const number of arrNumbers) {
-                                        if (/\d*9\d*/.test(number)) {
-                                            break;
-                                        }
-                                        else if(number % 2 || number == 0) {
-                                            listOfNumbers.push(' Odd');
-                                        }
-                                        else{
-                                            listOfNumbers.push(' ' + number);
-                                        }
-                                    }
-                                }
-
-                                $("#answer-question_1").text(listOfNumbers);
-                            });
-                        });
-                    </script>
+                    <script src="assets/script/question_1.js"></script>
 
                     <!-- Question 2 (Done) -->
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="our-team">
                             <div class="team_img">
-                                <img src="https://undergradeasier.com/wp-content/uploads/2019/03/2-Question-Marks.png" alt="Question 2">
+                                <img src="assets/img/question_2.png" alt="Question 2">
                             </div>
                             <div class="team-content">
                                 <h3>Question 2</h3>
@@ -238,87 +156,13 @@
                             </div>
                         </div>
                     </div>
-                    <script>
-                        $(document).ready(function () {
-                            $('#lets_go-question_2').click(function(){
-                                $("#show-question_2").modal('show');
-                            });
-
-                            $('#text-question_2').keyup(function(event){
-                                var countEachVowel = 0;
-                                var countEachNumber = 0;
-                                var countEachConsonant = 0;
-                                var countEachSpecialChar = 0;
-                                var oneCharVowel = {};
-                                var oneCharConsonant = {};
-                                var oneCharSpecialChar = {};
-                                var oneCharNumber = {};
-                                var longestWordinList = '';
-                                var wordConstructed = '';
-                                var listOfLongestWord = [];
-                                var value = $('#text-question_2').val();
-
-                                for (var i = 0; i < value.length; i++) {
-                                    var char = value[i];
-                                    
-                                    if (char == 'a' || char == 'e' || char == 'i' || char == 'o' || char == 'u') {
-                                        countEachVowel++;
-                                        oneCharVowel[char] = (oneCharVowel[char] ?? 0) + 1;
-                                        
-                                        wordConstructed += char;
-                                       
-                                    }
-                                    else if (/[!@#$%^&*(),.?":{}|<>_-\s]/.test(char)) {
-                                        countEachSpecialChar++;
-                                        if (/\s/.test(char) || char === ' ') {
-                                            char = '[ Blank Space ]';
-                                        }
-
-                                        oneCharSpecialChar[char] = (oneCharSpecialChar[char] ?? 0) + 1;
-
-                                        listOfLongestWord.push(wordConstructed);
-                                        wordConstructed = '';
-                                    }
-                                    else if (/\d/.test(char)) {
-                                        countEachNumber++;
-                                        oneCharNumber[char] = (oneCharNumber[char] ?? 0) + 1;
-
-                                        listOfLongestWord.push(wordConstructed);
-                                        wordConstructed = '';
-                                    }
-                                    else {
-                                        countEachConsonant++;
-                                        oneCharConsonant[char] = (oneCharConsonant[char] ?? 0) + 1;
-
-                                        wordConstructed += char;
-                                    }
-                                }
-
-
-                                if (wordConstructed != '') {
-                                    listOfLongestWord.push(wordConstructed);
-                                }
-
-                                listOfLongestWord.forEach(word => {
-                                    if (word.length > longestWordinList.length) {
-                                        longestWordinList = word;
-                                    }
-                                });
-
-                                $('#vowels').val(JSON.stringify(oneCharVowel));
-                                $('#consonants').val(JSON.stringify(oneCharConsonant));
-                                $('#numbers').val(JSON.stringify(oneCharNumber));
-                                $('#otherChars').val(JSON.stringify(oneCharSpecialChar));
-                                $('#longestWord').val(longestWordinList);
-                            });
-                        });
-                    </script>
+                    <script src="assets/script/question_2.js"></script>
 
                     <!-- Question 3 (Done) -->
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="our-team">
                             <div class="team_img">
-                                <img src="https://alhambrapreservationgroup.files.wordpress.com/2014/06/magnifying-q3.jpg" alt="Question 3">
+                                <img src="assets/img/question_3.jpg" alt="Question 3">
                             </div>
                             <div class="team-content">
                                 <h3>Question 3</h3>
@@ -372,137 +216,13 @@
                             </div>
                         </div>
                     </div>
-                    <script>
-                        $(document).ready(function () {
-                            var selectShape = '';
-                            var height = 0;
-                            var length = 0;
-
-                            function resetDimension() {
-                                height = 0;
-                                length = 0;
-
-                                $('#height').val(0)
-                                $('#length').val(0)
-                            }
-
-                            $('#div-length, #div-height').hide();
-                            $('#div-shape').hide();
-
-                            $('#lets_go-question_3').click(function(){
-                                $("#show-question_3").modal('show');
-                            });
-
-                            $('#select_shape').change(function () {
-                                selectShape = $('#select_shape').val();                                
-
-                                switch (selectShape){
-                                    case 'square':
-                                        resetDimension();
-                                        $('#div-length').show();
-                                        $('#div-height').show();
-                                        break;
-                                    case 'triangle':
-                                        resetDimension();
-                                        $('#div-length').hide();
-                                        $('#div-height').show();
-                                        break;
-                                    case 'diamond':
-                                        resetDimension();
-                                        $('#div-length').hide();
-                                        $('#div-height').show();
-                                        break;
-                                    default:
-                                        resetDimension();
-                                        $('#div-length, #div-height').hide();
-                                        break;
-                                }
-
-                                updateShape();
-                            });
-
-                            $('#height, #length').on('input' , function () {
-                                height = parseInt($('#height').val());
-                                length = parseInt($('#length').val());
-                                updateShape();
-                            });
-
-                            function updateShape() {                                
-                                $('#div-shape').show();
-                                var shapeString = '';
-
-                                if (selectShape == 'square') {
-                                    for (var i = 0; i < height; i++) {
-                                        var row = '';
-                                        for (var j = 0; j < length; j++) {
-                                            row += '*';
-                                        }
-                                        shapeString += row + '\n';
-                                    }
-                                    $('#shape').val(shapeString);
-                                } 
-                                else if (selectShape == 'triangle') {
-                                    for (var i = 0; i < height; i++) {
-                                        var row = '';
-
-                                        for (var j = 0; j < height - i - 1; j++) {
-                                            row += ' ';
-                                        }
-                                        row += '';
-
-                                        for (var j = 0; j <= i; j++) {
-                                            row += '*';
-                                        }
-                                        for (var j = 0; j < i; j++) {
-                                            row += '*';
-                                        }
-                                        shapeString += row + '\n';
-                                    }
-                                    $('#shape').val(shapeString);
-                                }
-                                else if (selectShape == 'diamond') {
-                                    for (var i = 0; i < height; i++) {
-                                        var row = '';
-                                        for (var j = 0; j < height - i; j++) {
-                                            row += ' ';
-                                        }
-                                        for (var j = 0; j <= i; j++) {
-                                            row += '*';
-                                        }
-                                        for (var j = 0; j < i; j++) {
-                                            row += '*';
-                                        }
-                                        shapeString += row + '\n';
-                                    }                                    
-
-
-                                    for (var i = height; i > 0; i--) {
-                                        var row = '';
-                                        for (var j = 0; j < height - i; j++) {
-                                            row += ' ';
-                                        }
-                                        for (var j = 0; j <= i; j++) {
-                                            row += '*';
-                                        }
-                                        for (var j = 0; j < i; j++) {
-                                            row += '*';
-                                        }
-                                        shapeString += row + '\n';
-                                    }
-                                    $('#shape').val(shapeString);
-                                }
-                                else {
-                                    $('#div-shape').hide();
-                                }
-                            }
-                        });
-                    </script>
+                    <script src="assets/script/question_3.js"></script>
 
                     <!-- Question 4 (Done) -->
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="our-team">
                             <div class="team_img">
-                                <img src="https://knowyourteam.com/blog/wp-content/uploads/2020/04/Untitled_Artwork-8-1024x429.png" alt="Question 4">
+                                <img src="assets/img/question_4.png" alt="Question 4">
                             </div>
                             <div class="team-content">
                                 <h3>Question 4</h3>
@@ -564,80 +284,13 @@
                             </div>
                         </div>
                     </div>
-                    <script>
-                       $(document).ready(function () {
-                            var filteredInput = '';
-                            var totalValue = '';
-
-                            $('#lets_go-question_4').click(function(){
-                                $("#show-question_4").modal('show');
-                            });
-                            
-                            $('#reset').click(function(){
-                                $('#input_calculator').val('');
-                                $('#output_calculator').val('');
-                            });
-
-                            $('#delete').click(function(){
-                                filteredInput = filteredInput.substring(0, filteredInput.length - 1);
-                                $('#input_calculator').val(filteredInput);
-                                $('#output_calculator').val(filteredInput);
-                            });
-
-                            $('#input_calculator').keyup(function () {
-                                var input = $(this).val();
-                                filteredInput = input.replace(/[^\d*/+-]/g, '');
-                                $('#input_calculator').val(filteredInput);
-                                $('#output_calculator').val(filteredInput);
-                            });
-
-                            function handleOperatorClick(value) {
-                                var operators = ['+', '-', '*', '/'];
-                                var lastChar = filteredInput.substr(filteredInput.length - 1);
-
-                                if (!operators.includes(lastChar)) {
-                                    filteredInput += value;
-                                }
-
-                                $('#input_calculator').val(filteredInput);
-                                $('#output_calculator').val(filteredInput);
-                            }
-
-
-                            $('#plus').click(function () {
-                                handleOperatorClick('+');                               
-                            });
-
-                            $('#minus').click(function () {
-                                handleOperatorClick('-');
-                            });
-
-                            $('#times').click(function () {
-                                handleOperatorClick('*');
-                            });
-
-                            $('#divide').click(function () {
-                                handleOperatorClick('/');
-                            });
-
-                            $('.calculator_operator').click(function () {
-                                $('#input_calculator').focus();
-                            })
-
-
-                            $('#calculate').click(function () {
-                                totalValue = eval(filteredInput);
-                                $('#output_calculator').val(totalValue);
-                            })
-                        });
-
-                    </script>
+                    <script src="assets/script/question_4.js"></script>
                     
                     <!-- Question 5 (Done) -->
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="our-team">
                             <div class="team_img">
-                                <img src="https://media.istockphoto.com/id/1389647308/photo/red-number-5-and-question-mark-written-white-cube-sitting-before-defocused-background.jpg?s=2048x2048&w=is&k=20&c=nRPyzYzZfY__f1PWQk7KpMdCPw6lxeHTj4IP2bETx3M=" alt="Question 5">
+                                <img src="assets/img/question_5.jpg" alt="Question 5">
                             </div>
                             <div class="team-content">
                                 <h3>Question 5</h3>
@@ -645,28 +298,19 @@
                                 <button id="lets_go-question_5" class="lets_go-button">Let's Go</button>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                     <script>
-                        $(document).ready(function () {
+                        $(document).ready(function(){
                             $('#lets_go-question_5').click(function (e) {
                                 location.replace("index.html");
                             })
                         });
-                    </script>                                       
+                    </script>
                 </div>
             </div>
         </section>
 
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-        <script>
-            $(document).ready(function () {
-                var firstName = localStorage.getItem('first_name');
-                var lastName = localStorage.getItem('last_name');
-
-                $('#guest_name').text(firstName + ' ' + lastName);
-            });
-        </script>   
+        <script src="script.js"></script>
     </body>
 </html>
 
