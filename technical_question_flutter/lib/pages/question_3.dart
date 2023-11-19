@@ -129,7 +129,7 @@ class _Question3State extends State<Question3> {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('$uppercasedShape shape is shown. Do you want to choose another shape? Can\t see? Swipe up/down or left/right'),
+            title: Text('$uppercasedShape shape is shown. Do you want to choose another shape? Swipe up/down or left/right to see more'),
             content: Center(child: SingleChildScrollView(child: SizedBox(child: SingleChildScrollView(scrollDirection: Axis.horizontal, child: returnGeneratedShape())))),
             actions: <Widget>[
               TextButton(

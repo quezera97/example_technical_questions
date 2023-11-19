@@ -22,14 +22,16 @@
     </head>
     <body>
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-            <div class="card-body">
-                <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration </h3>
+            <div class="card-body p-4 p-md-5">
+                <h3 id="guest_name">Welcome Back, The Chosen One</h3>
+                <br>
+                <h5 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h5>
                 <form>
                     <div class="row">
                         <div class="col-md-6 mb-4">
                             <div class="form-outline">
-                                <label class="form-label" for="firstName">First Name</label>
-                                <input type="text" id="firstName" class="form-control form-control-lg"/>
+                                <label class="form-label" for="firstName">First Name <span style="color: red;">*</span></label>
+                                <input type="text" id="firstName" class="form-control form-control-lg" required/>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
@@ -63,7 +65,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-4 pb-2">
                             <div class="form-outline">
-                                <label class="form-label" for="emailAddress">Email</label>
+                                <label class="form-label" for="emailAddress">Email <span style="color: red;">*</span></label>
                                 <input type="email" id="emailAddress" class="form-control form-control-lg" />
                             </div>
                         </div>
@@ -76,7 +78,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <label class="form-label select-label">Subscription Plan</label>
+                            <label class="form-label select-label">Subscription Plan <span style="color: red;">*</span></label>
                             <br>
                             <select id="subscription-plan" class="select form-control-lg">
                                 <option value="" disabled>Choose option</option>
@@ -88,6 +90,7 @@
                     <div class="mt-4 pt-2">
                         <button id="register-button" type="button" class="btn btn-primary btn-block">Register</button>
                     </div>
+
                 </form>
             </div>
         </div>
@@ -96,7 +99,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Is the information displayed on the modal accurate?</h5>
+                        <h5 class="modal-title">Is the information displayed on the modal precise?</h5>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -133,8 +136,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="confirm-register" type="button" class="btn btn-primary">YES</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button id="confirm-register" type="button" class="btn btn-success">YES</button>
+                        <button id="no-register" type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
                     </div>
                 </div>
             </div>
@@ -146,7 +149,11 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
         <script>
             $(document).ready(function () {
+                var registerForm = {};
+
                 $("#register-button").click(function (e) {
+                    localStorage.clear();
+
                     var first_name = $('#firstName').val();
                     var last_name = $('#lastName').val();
                     var gender = $('input[name=genderOptions]:checked').val();
@@ -154,24 +161,60 @@
                     var phone = $('#phoneNumber').val();
                     var subscription = $('#subscription-plan').val();
 
-                    $('#modal-first_name').text(first_name);
-                    $('#modal-last_name').text(last_name);
-                    $('#modal-gender').text(gender);
-                    $('#modal-email').text(email);
-                    $('#modal-phone').text(phone);
-                    $('#modal-subscription').text(subscription);
+                    if(first_name == ''){
+                        alert('First name is required');
+                    }
+                    else if (email == '') {
+                        alert('Email is required');
+                    }
+                    else if( !validateEmail(email)){
+                        alert("Invalid Email Address");
+                    }
+                    else{
+                        $('#modal-first_name').text(first_name);
+                        $('#modal-last_name').text(last_name);
+                        $('#modal-gender').text(gender);
+                        $('#modal-email').text(email);
+                        $('#modal-phone').text(phone);
+                        $('#modal-subscription').text(subscription);
+                
+                        registerForm = {
+                            first_name: first_name,
+                            last_name: last_name,
+                            gender: gender,
+                            email: email,
+                            phone: phone,
+                            subscription: subscription,
+                        };
+                
+                        $("#show-details").modal('show');
+                    }
 
-                    var registerForm = {
-                        first_name: first_name,
-                        last_name: last_name,
-                        gender: gender,
-                        email: email,
-                        phone: phone,
-                        subscription: subscription,
-                    };
-
-                    $("#show-details").modal('show');
                 });
+
+                function validateEmail(email) {
+                    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                    return emailReg.test( email );
+                }
+
+
+                $('#no-register').click(function (e){
+                    $('#guest_name').text('Are you not ' + $('#firstName').val() + ' ' + $('#lastName').val() + '?');
+                })
+
+                $('#confirm-register').click(function (e) {
+                    for (var key in registerForm) {
+                        if (registerForm.hasOwnProperty(key)) {
+                            var value = registerForm[key];
+                            
+                            localStorage.setItem(key, value);
+                        }
+                    }
+
+                    $("#show-details").modal('hide');
+
+                    $('#guest_name').text('Hello ' + $('#firstName').val() + ' ' + $('#lastName').val());
+                })
             });
         </script>
     </body>

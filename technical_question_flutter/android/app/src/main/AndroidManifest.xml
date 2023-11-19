@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.technical_question">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="technical_question"
+        android:label="Technical Question"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

@@ -1,6 +1,8 @@
 .gradient-custom {
+    position: relative;
+    min-height: 100vh;
     background: -webkit-linear-gradient(to bottom right, rgb(43, 185, 225), rgba(245, 87, 108, 1));
-    background: linear-gradient(to bottom right, rgba(43, 185, 225  ), rgba(245, 87, 108, 1))
+    background: linear-gradient(to bottom right, rgb(43, 185, 225), rgba(245, 87, 108, 1));
 }
     
 .card-registration .select-input.form-control[readonly]:not([disabled]) {

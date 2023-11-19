@@ -21,10 +21,16 @@ class _Question1State extends State<Question1> {
   List<int> arrDigit = [];
   String numberContainingNine = '';
   bool containsNine = false;
+  bool _showInstruction = false;
 
   @override
   void initState() {
     super.initState();
+    Future.delayed(Duration.zero, () {
+      setState(() {
+        _showInstruction = true;
+      });
+    });
   }
 
   String calcDigit(digitArr) {
@@ -43,6 +49,33 @@ class _Question1State extends State<Question1> {
 
   @override
   Widget build(BuildContext context) {
+    if (_showInstruction) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return const AlertDialog(
+              title: Text('Instruction'),
+              content: HtmlWidget(
+                '''
+                  <ol>
+                    <li>Choose the length of array (the higher the better)</li>
+                    <li>Click 'Generate Number' button, to generate random number</li>
+                    <li>If there's no number 9 in generated number, repeat step 2</li>
+                    <li>The list of numbers can be scrolled</li>
+                  </ol>
+                ''',
+              ),
+            );
+          },
+        );
+      });
+
+      setState(() {
+        _showInstruction = false;
+      });
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('Question 1'),
@@ -58,7 +91,7 @@ class _Question1State extends State<Question1> {
                     '''
                     <h3>Create a function that accepts an array of integers, do the following:</h3>
                     <ol>
-                      <li>Loop through the array and display the integer if it is an even number, display "Odd" if it is anodd number.</li>
+                      <li>Loop through the array and display the integer if it is an even number, display "Odd" if it is an odd number.</li>
                       <li>Stop the loop if the number '9' is encountered</li>
                     </ol>
                     ''',
