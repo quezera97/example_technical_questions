@@ -74,12 +74,7 @@ flutter:
   assets:
     - assets/
     - assets/ic_launcher.png
-    - assets/question_1/
-    - assets/question_2/
-    - assets/question_3/
-    - assets/question_4/
-    - assets/question_5/
-    - assets/question_5/question_5.html
+    - assets/question_5.html
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

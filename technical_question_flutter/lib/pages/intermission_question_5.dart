@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import '../widget/reuse_widget.dart';
-import 'question5.dart';
-import 'solutions_functions.dart';
+import 'question_5.dart';
 
 class IntermissionQuestion5 extends StatelessWidget {
   IntermissionQuestion5({super.key});
@@ -33,15 +32,6 @@ class IntermissionQuestion5 extends StatelessWidget {
                     ''',
                 ),
               ),
-              generateWidget.createSimpleButton('Solutions and Functions', () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const SolutionsFunctions(title: 'Question 5', listOfImg: [
-                            'assets/question_5/1.png',
-                          ])),
-                );
-              }),
               const SizedBox(height: 10),
               generateWidget.createSimpleButton('GO (will be redirected to HTML file)', () async {
                 Navigator.push(

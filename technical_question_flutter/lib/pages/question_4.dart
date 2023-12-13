@@ -3,8 +3,6 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:math_expressions/math_expressions.dart';
 
 import '../widget/reuse_widget.dart';
-import 'solutions_functions.dart';
-
 class Question4 extends StatefulWidget {
   const Question4({Key? key}) : super(key: key);
 
@@ -96,15 +94,6 @@ class _Question4State extends State<Question4> {
                 ''',
                 ),
               ),
-              generateWidget.createSimpleButton('Solutions and Functions', () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const SolutionsFunctions(title: 'Question 4', listOfImg: [
-                            'assets/question_4/1.png',
-                          ])),
-                );
-              }),
               const SizedBox(height: 10),
               Text(
                 result,

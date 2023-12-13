@@ -4,8 +4,6 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import '../dashboard.dart';
 import '../widget/generate_shape.dart';
 import '../widget/reuse_widget.dart';
-import 'solutions_functions.dart';
-
 class Question3 extends StatefulWidget {
   const Question3({Key? key}) : super(key: key);
 
@@ -185,16 +183,6 @@ class _Question3State extends State<Question3> {
                   ''',
                   ),
                 ),
-                generateWidget.createSimpleButton('Solutions and Functions', () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SolutionsFunctions(title: 'Question 3', listOfImg: [
-                              'assets/question_3/1.png',
-                              'assets/question_3/2.png',
-                            ])),
-                  );
-                }),
                 const SizedBox(height: 10),
                 PopupMenuButton<String>(
                   onSelected: selectShape,

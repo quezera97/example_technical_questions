@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import '../widget/reuse_widget.dart';
-import 'solutions_functions.dart';
-
 class Question1 extends StatefulWidget {
   const Question1({super.key});
 
@@ -97,17 +95,6 @@ class _Question1State extends State<Question1> {
                     ''',
                   ),
                 ),
-                generateWidget.createSimpleButton('Solutions and Functions', () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SolutionsFunctions(title: 'Question 1', listOfImg: [
-                              'assets/question_1/1.png',
-                              'assets/question_1/2.png',
-                              'assets/question_1/3.png',
-                            ])),
-                  );
-                }),
                 const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.all(8.0),

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import '../widget/reuse_widget.dart';
-import 'solutions_functions.dart';
-
 class Question2 extends StatefulWidget {
   const Question2({super.key});
 
@@ -143,16 +141,6 @@ class _Question2State extends State<Question2> {
                 ''',
                 ),
               ),
-              generateWidget.createSimpleButton('Solutions and Functions', () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const SolutionsFunctions(title: 'Question 2', listOfImg: [
-                            'assets/question_2/1.png',
-                            'assets/question_2/2.png',
-                          ])),
-                );
-              }),
               const SizedBox(height: 10),
               //user can enter own's word and press submit to check the occurence and longest word and display them
               generateWidget.createTextFormField(inputText, '', 'Enter your words here', checkString, null, TextInputType.text),

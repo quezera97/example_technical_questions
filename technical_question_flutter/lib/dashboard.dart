@@ -6,6 +6,7 @@ import 'pages/question_1.dart';
 import 'pages/question_2.dart';
 import 'pages/question_3.dart';
 import 'pages/question_4.dart';
+import 'pages/question_6.dart';
 import 'widget/reuse_widget.dart';
 
 class MyInAppBrowser extends InAppBrowser {
@@ -88,6 +89,12 @@ class _DashboardState extends State<Dashboard> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => IntermissionQuestion5()),
+                    );
+                  }),
+                  generateWidget.createSimpleButton('Question 6', () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Question6()),
                     );
                   }),
                 ].map((button) {

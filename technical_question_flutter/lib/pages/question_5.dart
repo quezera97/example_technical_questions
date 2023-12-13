@@ -11,7 +11,7 @@ class Question5 extends StatelessWidget {
     try {
       await _webViewController?.loadFile(
         //get html file from assets to initially load it first (takes time)
-        assetFilePath: "assets/question_5/question_5.html",
+        assetFilePath: "assets/question_5.html",
       );
     } catch (e) {
       print("Error loading HTML file: $e");
