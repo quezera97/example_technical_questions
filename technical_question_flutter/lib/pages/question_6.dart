@@ -1,15 +1,3 @@
-// 1.	A courier company, PosMax want to use a computer program to determine payable sum of their mileage claims. The payable sum is calculated using this table.
-//  KM               Cents per KM
-// First 500        50
-// Next 200         40
-// Each extra km            30
-// Example:
-// o	If the travel took 100 km, they should pay RM50.00.
-// o	If the travel took 600 km, they should pay RM290.00 (that is 250 + 40).
-// o	If the travel took 800 km, they should pay RM360.00 (that is 250 + 80 + 30).
-
-// ** Note : Please develop code without using && or || syntax
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
