@@ -3,11 +3,14 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 import 'pages/intermission_question_5.dart';
 import 'pages/question_1.dart';
+import 'pages/question_10.dart';
 import 'pages/question_2.dart';
 import 'pages/question_3.dart';
 import 'pages/question_4.dart';
 import 'pages/question_6.dart';
 import 'pages/question_7.dart';
+import 'pages/question_8.dart';
+import 'pages/question_9.dart';
 import 'widget/reuse_widget.dart';
 
 class MyInAppBrowser extends InAppBrowser {
@@ -102,6 +105,24 @@ class _DashboardState extends State<Dashboard> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => const Question7()),
+                    );
+                  }),
+                  generateWidget.createSimpleButton('Question 8', () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Question8()),
+                    );
+                  }),
+                  generateWidget.createSimpleButton('Question 9', () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Question9()),
+                    );
+                  }),
+                  generateWidget.createSimpleButton('Question 10', () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Question10()),
                     );
                   }),
                 ].map((button) {

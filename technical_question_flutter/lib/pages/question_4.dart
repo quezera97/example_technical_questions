@@ -75,6 +75,7 @@ class _Question4State extends State<Question4> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Question 4'),
+        backgroundColor: generateWidget.excludeWhiteColor(),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

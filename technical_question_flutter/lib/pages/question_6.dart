@@ -73,6 +73,7 @@ class _Question6State extends State<Question6> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Question 6'),
+        backgroundColor: generateWidget.excludeWhiteColor(),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.5),

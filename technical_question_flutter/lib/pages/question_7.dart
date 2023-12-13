@@ -31,6 +31,7 @@ class _Question7State extends State<Question7> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Question 7'),
+        backgroundColor: generateWidget.excludeWhiteColor(),
       ),
       body: SingleChildScrollView(
         child: Padding(
