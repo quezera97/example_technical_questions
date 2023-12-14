@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../widget/reuse_widget.dart';
 import '../widget/webview.dart';
@@ -16,6 +17,8 @@ class Question10 extends StatefulWidget {
 }
 
 class _Question10State extends State<Question10> {
+  late SharedPreferences prefs;
+
   final generateWidget = GenerateWidget();
   final numberController = TextEditingController(text: '5');
   List<int> arrDigit = [];
@@ -28,27 +31,42 @@ class _Question10State extends State<Question10> {
   @override
   void initState() {
     super.initState();
+    initializeSharedPreferences();
+  }
+
+  Future<void> initializeSharedPreferences() async {
+    prefs = await SharedPreferences.getInstance();
+
     generateAndSortNumber();
   }
 
-  void generateAndSortNumber() {
+  Future<void> generateAndSortNumber() async {
+    prefs = await SharedPreferences.getInstance();
+
     lengthOfArray = int.parse(numberController.text);
     
-    for (int i = 0; i < lengthOfArray; i++) {
-      int randomNumber = random.nextInt(100);
-      arrDigit.add(randomNumber);
+    if(lengthOfArray == 0){
+      showValidationDialog('Please enter number above 0');
     }
+    else{
+      for (int i = 0; i < lengthOfArray; i++) {
+        int randomNumber = random.nextInt(100);
+        arrDigit.add(randomNumber);
+      }
 
-    bubbleSortArr = List.from(arrDigit);
-    insertionSortArr = List.from(arrDigit);
-    mergeSortArr = List.from(arrDigit);
-    bubbleSort(bubbleSortArr);
-    insertionSort(insertionSortArr);
-    mergeSort(mergeSortArr, 0, lengthOfArray - 1);
+      bubbleSortArr = List.from(arrDigit);
+      insertionSortArr = List.from(arrDigit);
+      mergeSortArr = List.from(arrDigit);
+      bubbleSort(bubbleSortArr);
+      insertionSort(insertionSortArr);
+      mergeSort(mergeSortArr, 0, lengthOfArray - 1);
 
-    setState(() {
-      arrDigit;
-    });
+      await prefs.setString('prefsSortedArr', bubbleSortArr.toString());
+
+      setState(() {
+        arrDigit;
+      });
+    }
   }
 
   void bubbleSort(bubbleSortArr) {
@@ -127,6 +145,26 @@ class _Question10State extends State<Question10> {
       k++;
     }
   }
+
+  void showValidationDialog(String message) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(message),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -144,7 +182,13 @@ class _Question10State extends State<Question10> {
                 padding: EdgeInsets.all(15),
                 child: HtmlWidget(
                   '''
-                    <h3> Implement a sorting algorithm such as Bubble Sort, Insertion Sort, or Merge Sort to sort an array of numbers in ascending order. </h3>
+                    <h3> Implement a sorting algorithm such as </h3>
+                    <ul>
+                      <li> Bubble Sort </li>
+                      <li> Insertion Sort </li>
+                      <li> Merge Sort </li>
+                    </ul>
+                    <h3> to sort an array of numbers in ascending order. </h3>
                   ''',
                 ),
               ),

@@ -48,7 +48,7 @@ class GenerateWidget {
     TextEditingController controller,
     String labelText,
     String hintText,
-    Function(String) functionCallBack,
+    Function(dynamic) functionCallBack,
     List<TextInputFormatter>? inputFormatters,
     TextInputType keyboardType,
   ) {

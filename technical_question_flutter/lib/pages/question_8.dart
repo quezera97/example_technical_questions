@@ -16,7 +16,7 @@ class _Question8State extends State<Question8> {
   final textController = TextEditingController();
   var reversedString = '';
 
-  void reverseString(String value) {
+  void reverseString(dynamic value) {
     reversedString = value.split('').reversed.join();
 
     setState(() {

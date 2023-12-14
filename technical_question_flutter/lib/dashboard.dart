@@ -4,6 +4,12 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'pages/intermission_question_5.dart';
 import 'pages/question_1.dart';
 import 'pages/question_10.dart';
+import 'pages/question_11.dart';
+import 'pages/question_12.dart';
+import 'pages/question_13.dart';
+import 'pages/question_14.dart';
+import 'pages/question_15.dart';
+import 'pages/question_16.dart';
 import 'pages/question_2.dart';
 import 'pages/question_3.dart';
 import 'pages/question_4.dart';
@@ -95,34 +101,70 @@ class _DashboardState extends State<Dashboard> {
                       MaterialPageRoute(builder: (context) => IntermissionQuestion5()),
                     );
                   }),
-                  generateWidget.createSimpleButton('Question 6', () async {
+                  generateWidget.createSimpleButton('Question 6', () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => const Question6()),
                     );
                   }),
-                  generateWidget.createSimpleButton('Question 7', () async {
+                  generateWidget.createSimpleButton('Question 7', () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => const Question7()),
                     );
                   }),
-                  generateWidget.createSimpleButton('Question 8', () async {
+                  generateWidget.createSimpleButton('Question 8', () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => const Question8()),
                     );
                   }),
-                  generateWidget.createSimpleButton('Question 9', () async {
+                  generateWidget.createSimpleButton('Question 9', () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => const Question9()),
                     );
                   }),
-                  generateWidget.createSimpleButton('Question 10', () async {
+                  generateWidget.createSimpleButton('Question 10', () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => const Question10()),
+                    );
+                  }),
+                  generateWidget.createSimpleButton('Question 11', () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Question11()),
+                    );
+                  }),
+                  generateWidget.createSimpleButton('Question 12', () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Question12()),
+                    );
+                  }),
+                  generateWidget.createSimpleButton('Question 13', () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Question13()),
+                    );
+                  }),
+                  generateWidget.createSimpleButton('Question 14', () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Question14()),
+                    );
+                  }),
+                  generateWidget.createSimpleButton('Question 15', () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Question15()),
+                    );
+                  }),
+                  generateWidget.createSimpleButton('Question 16', () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Question16()),
                     );
                   }),
                 ].map((button) {

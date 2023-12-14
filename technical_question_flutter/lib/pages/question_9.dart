@@ -16,6 +16,7 @@ class Question9 extends StatefulWidget {
 class _Question9State extends State<Question9> {
   final generateWidget = GenerateWidget();
   final numberController = TextEditingController(text: '5');
+  int lengthOfArray = 5;
   List<int> arrDigit = [];
   int largestInt = 0;
   Random random = Random();
@@ -28,23 +29,50 @@ class _Question9State extends State<Question9> {
   }
 
   void generateAndFindNumber() {
-    for (int i = 0; i < int.parse(numberController.text); i++) {
-      int randomNumber = random.nextInt(100);
-      arrDigit.add(randomNumber);
+    lengthOfArray = int.parse(numberController.text);
+
+    if(lengthOfArray == 0){
+      showValidationDialog('Please enter number above 0');
     }
-
-    largestInt = arrDigit[0];
-
-    for(int i = 1; i < int.parse(numberController.text); i++) {
-      if(arrDigit[i] > largestInt){
-        largestInt = arrDigit[i];
+    else{
+      for (int i = 0; i < lengthOfArray; i++) {
+        int randomNumber = random.nextInt(100);
+        arrDigit.add(randomNumber);
       }
-    }
 
-    setState(() {
-      arrDigit;
-      largestInt;
-    });
+      largestInt = arrDigit[0];
+
+      for(int i = 1; i < lengthOfArray; i++) {
+        if(arrDigit[i] > largestInt){
+          largestInt = arrDigit[i];
+        }
+      }
+
+      setState(() {
+        arrDigit;
+        largestInt;
+      });
+    }
+  }
+
+  void showValidationDialog(String message) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(message),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
   }
   
   @override

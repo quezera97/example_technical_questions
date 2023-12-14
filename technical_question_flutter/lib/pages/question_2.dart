@@ -27,7 +27,7 @@ class _Question2State extends State<Question2> {
   String wordConstructed = '';
   List<String> listOfLongestWord = [];
 
-  void checkString(String value) {
+  void checkString(dynamic value) {
     countEachVowel = 0;
     countEachNumber = 0;
     countEachConsonant = 0;

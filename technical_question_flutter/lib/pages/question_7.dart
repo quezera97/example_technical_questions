@@ -66,10 +66,10 @@ class _Question7State extends State<Question7> {
                       </tr>
                     </table>
                     <ol>
-                    <li>If the travel took 100 km, they should pay RM50.00</li>
-                    <li>If the travel took 600 km, they should pay RM290.00 (that is 250 + 40)</li>
-                    <li>If the travel took 800 km, they should pay RM360.00 (that is 250 + 80 + 30)</li>
-                  </ol>
+                      <li>If the travel took 100 km, they should pay RM50.00</li>
+                      <li>If the travel took 600 km, they should pay RM290.00 (that is 250 + 40)</li>
+                      <li>If the travel took 800 km, they should pay RM360.00 (that is 250 + 80 + 30)</li>
+                    </ol>
                   <b>Note : Please develop code without using && or || syntax</b>
                   ''',
                 ),
