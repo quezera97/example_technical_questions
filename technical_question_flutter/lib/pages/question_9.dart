@@ -1,4 +1,3 @@
-// String Manipulation: Create a function that takes in a string and returns the reverse of that string
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -70,7 +69,7 @@ class _Question9State extends State<Question9> {
               ),
               const SizedBox(height: 10),
 
-              generateWidget.createTextFormField(numberController, '', 'Enter size of array', (p0) => null, [FilteringTextInputFormatter.allow(RegExp("[0-9]"))], TextInputType.number),
+              generateWidget.createTextFormField(numberController, 'Size', 'Enter size of array', (p0) => null, [FilteringTextInputFormatter.allow(RegExp("[0-9]"))], TextInputType.number),
             
               generateWidget.createSimpleButton('Generate number', () {
                 arrDigit = [];
