@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import '../widget/reuse_widget.dart';
+import '../widget/webview.dart';
 
 class Question10 extends StatefulWidget {
   const Question10({super.key});
@@ -154,6 +155,15 @@ class _Question10State extends State<Question10> {
                 arrDigit = [];
 
                 generateAndSortNumber();
+              }),
+
+              const SizedBox(height: 10),
+
+              generateWidget.createSimpleButton('Reference Link', () async {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const WebViewWidget(url: 'https://medium.com/yay-its-erica/algorithms-for-beginners-bubble-sort-insertion-sort-merge-sort-29bd5506cc48')),
+                );
               }),
 
               const SizedBox(height: 50),

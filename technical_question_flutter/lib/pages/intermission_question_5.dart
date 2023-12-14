@@ -33,6 +33,7 @@ class IntermissionQuestion5 extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
+              
               generateWidget.createSimpleButton('GO (will be redirected to HTML file)', () async {
                 Navigator.push(
                   context,
