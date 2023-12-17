@@ -28,7 +28,7 @@ class _Question12State extends State<Question12> {
 
     return emailRegExp.hasMatch(email);
   }
-  
+
   void showValidationDialog(String message) {
     showDialog(
       context: context,
@@ -59,39 +59,30 @@ class _Question12State extends State<Question12> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(15),
-                child: HtmlWidget(
-                  '''
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            const Padding(
+              padding: EdgeInsets.all(15),
+              child: HtmlWidget(
+                '''
                     <h3>Design a function that validates whether a given string is a valid email address or not based on certain criteria</h3>
                   ''',
-                ),
               ),
-              const SizedBox(height: 10),
+            ),
+            const SizedBox(height: 10),
+            generateWidget.createTextFormField(emailController, 'Number', 'Enter number to be searched', (p0) => null, null, TextInputType.text),
+            generateWidget.createSimpleButton('Verify email', () {
+              isValid = isValidEmail(emailController.text);
 
-              generateWidget.createTextFormField(emailController, 'Number', 'Enter number to be searched', (p0) => null, null, TextInputType.text),
-
-              generateWidget.createSimpleButton('Verify email', () {
-
-                isValid = isValidEmail(emailController.text);
-
-                isValid == true ? showValidationDialog('Email is Valid') : showValidationDialog('Email is Invalid');
-              }),
-
-              const SizedBox(height: 10),
-
-              generateWidget.createSimpleButton('Reference Link', () async {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const WebViewWidget(url: 'https://www.geeksforgeeks.org/how-to-validate-email-address-without-using-regular-expression-in-javascript/')),
-                );
-              }),
-
-            ]
-          ),
+              isValid == true ? showValidationDialog('Email is Valid') : showValidationDialog('Email is Invalid');
+            }),
+            const SizedBox(height: 10),
+            generateWidget.createSimpleButton('Reference Link', () async {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const WebViewWidget(url: 'https://www.geeksforgeeks.org/how-to-validate-email-address-without-using-regular-expression-in-javascript/')),
+              );
+            }),
+          ]),
         ),
       ),
     );

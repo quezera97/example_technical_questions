@@ -29,17 +29,19 @@ class _Question11State extends State<Question11> {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     stringSortedArr = prefs.getString('prefsSortedArr');
-    List<String> stringValues = stringSortedArr!
-      .replaceAll('[', '')
-      .replaceAll(']', '')
-      .split(',');
 
-    // Trim whitespace and convert strings to integers
-    sortedArr = stringValues.map((e) => int.parse(e.trim())).toList();
+    if (stringSortedArr != null) {
+      List<String> stringValues = stringSortedArr!.replaceAll('[', '').replaceAll(']', '').split(',');
 
-    setState(() {
-      stringSortedArr;
-    });
+      // Trim whitespace and convert strings to integers
+      sortedArr = stringValues.map((e) => int.tryParse(e.trim()) ?? 0).toList();
+
+      setState(() {
+        stringSortedArr;
+      });
+    } else {
+      print('prefsSortedArr is null');
+    }
   }
 
   void binarySearch(dynamic searchedNumber) {
@@ -72,7 +74,6 @@ class _Question11State extends State<Question11> {
     });
   }
 
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,31 +84,25 @@ class _Question11State extends State<Question11> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(15),
-                child: HtmlWidget(
-                  '''
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            const Padding(
+              padding: EdgeInsets.all(15),
+              child: HtmlWidget(
+                '''
                   <h3>Develop a function that performs a binary search on a sorted list and returns the index of a specific element, or -1 if the element is not found</h3>
                   ''',
-                ),
               ),
-              const SizedBox(height: 10),
-
-              const Text('Array number from Question 10:', style: TextStyle(fontSize: 15)),
-              const SizedBox(height: 10),
-              Text('$stringSortedArr', style: const TextStyle(fontSize: 25)),
-              const SizedBox(height: 10),
-
-              generateWidget.createTextFormField(numberController, 'Number', 'Enter number to be searched', binarySearch, [FilteringTextInputFormatter.allow(RegExp("[0-9]"))], TextInputType.number),
-              
-              const Text('The input number found at (index):', style: TextStyle(fontSize: 15)),
-              const SizedBox(height: 10),
-              Text(locationFoundAt, style: const TextStyle(fontSize: 25)),
-            ]
-          ),
+            ),
+            const SizedBox(height: 10),
+            const Text('Array number from Question 10:', style: TextStyle(fontSize: 15)),
+            const SizedBox(height: 10),
+            Text('$stringSortedArr', style: const TextStyle(fontSize: 25)),
+            const SizedBox(height: 10),
+            generateWidget.createTextFormField(numberController, 'Number', 'Enter number to be searched', binarySearch, [FilteringTextInputFormatter.allow(RegExp("[0-9]"))], TextInputType.number),
+            const Text('The input number found at (index):', style: TextStyle(fontSize: 15)),
+            const SizedBox(height: 10),
+            Text(locationFoundAt, style: const TextStyle(fontSize: 25)),
+          ]),
         ),
       ),
     );
