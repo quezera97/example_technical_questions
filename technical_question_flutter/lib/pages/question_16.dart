@@ -30,7 +30,6 @@ class _Question16State extends State<Question16> {
                 padding: EdgeInsets.all(15),
                 child: HtmlWidget(
                   '''
-                <h3>  Write an algorithm to find the contiguous subarray within an array that has the largest sum</h3>
                 ''',
                 ),
               ),

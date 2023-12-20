@@ -42,6 +42,7 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   currency_formatter: ^2.2.0
   shared_preferences: ^2.2.2
+  flutter_masked_text2: ^0.9.1
 
 flutter_launcher_icons:
   android: "launcher_icon"
