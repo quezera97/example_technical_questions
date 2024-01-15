@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:math_expressions/math_expressions.dart';
 
-import '../widget/reuse_widget.dart';
+import '../../widget/reuse_widget.dart';
 class Question4 extends StatefulWidget {
   const Question4({Key? key}) : super(key: key);
 

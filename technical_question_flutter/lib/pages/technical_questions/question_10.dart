@@ -6,8 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../widget/reuse_widget.dart';
-import '../widget/webview.dart';
+import '../../widget/reuse_widget.dart';
+import '../../widget/webview.dart';
 
 class Question10 extends StatefulWidget {
   const Question10({super.key});

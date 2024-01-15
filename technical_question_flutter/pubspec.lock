@@ -552,6 +552,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.1"
+  percent_indicator:
+    dependency: "direct main"
+    description:
+      name: percent_indicator
+      sha256: c37099ad833a883c9d71782321cb65c3a848c21b6939b6185f0ff6640d05814c
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.3"
   petitparser:
     dependency: transitive
     description:
@@ -678,7 +686,7 @@ packages:
     source: hosted
     version: "7.0.0"
   sqflite:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: sqflite
       sha256: b4d6710e1200e96845747e37338ea8a819a12b51689a3bcf31eff0003b37a0b9
@@ -733,6 +741,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.1"
+  ternav_icons:
+    dependency: "direct main"
+    description:
+      name: ternav_icons
+      sha256: "01f38da5a41d93c22b4387e76841d77c6e0daf9d777606bbf1ce3eb459a6c273"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   test_api:
     dependency: transitive
     description:

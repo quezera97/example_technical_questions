@@ -1,40 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
-import 'pages/intermission_question_5.dart';
-import 'pages/question_1.dart';
-import 'pages/question_10.dart';
-import 'pages/question_11.dart';
-import 'pages/question_12.dart';
-import 'pages/question_13.dart';
-import 'pages/question_14.dart';
-import 'pages/question_15.dart';
-import 'pages/question_16.dart';
-import 'pages/question_2.dart';
-import 'pages/question_3.dart';
-import 'pages/question_4.dart';
-import 'pages/question_6.dart';
-import 'pages/question_7.dart';
-import 'pages/question_8.dart';
-import 'pages/question_9.dart';
-import 'widget/reuse_widget.dart';
-
-class MyInAppBrowser extends InAppBrowser {
-  @override
-  Future onBrowserCreated() async {
-    print("InAppBrowser Created");
-  }
-
-  @override
-  Future onLoadStart(url) async {
-    print("Loading $url");
-  }
-
-  @override
-  Future onLoadStop(url) async {
-    print("Finished loading $url");
-  }
-}
+import 'constant.dart';
+import 'technical_questions.dart';
+import 'widget/course_grid.dart';
+import 'widget/technical_questions_grid.dart';
+import 'widget/side_menu.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -44,142 +14,115 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  final generateWidget = GenerateWidget();
-  InAppWebViewController? webView;
-
-  Future<void> loadHTMLFromAssets() async {
-    await webView?.loadFile(
-      assetFilePath: "assets/question_5/question_5.html",
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        return false;
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Technical Questions'),
-        ),
-        body: Stack(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(10.5),
-              child: GridView.count(
-                childAspectRatio: 3.0,
-                crossAxisCount: 2,
-                children: [
-                  generateWidget.createSimpleButton('Question 1', () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Question1()),
-                    );
-                  }),
-                  generateWidget.createSimpleButton('Question 2', () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Question2()),
-                    );
-                  }),
-                  generateWidget.createSimpleButton('Question 3', () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Question3()),
-                    );
-                  }),
-                  generateWidget.createSimpleButton('Question 4', () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Question4()),
-                    );
-                  }),
-                  generateWidget.createSimpleButton('Question 5', () async {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => IntermissionQuestion5()),
-                    );
-                  }),
-                  generateWidget.createSimpleButton('Question 6', () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Question6()),
-                    );
-                  }),
-                  generateWidget.createSimpleButton('Question 7', () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Question7()),
-                    );
-                  }),
-                  generateWidget.createSimpleButton('Question 8', () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Question8()),
-                    );
-                  }),
-                  generateWidget.createSimpleButton('Question 9', () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Question9()),
-                    );
-                  }),
-                  generateWidget.createSimpleButton('Question 10', () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Question10()),
-                    );
-                  }),
-                  generateWidget.createSimpleButton('Question 11', () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Question11()),
-                    );
-                  }),
-                  generateWidget.createSimpleButton('Question 12', () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Question12()),
-                    );
-                  }),
-                  generateWidget.createSimpleButton('Question 13', () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Question13()),
-                    );
-                  }),
-                  generateWidget.createSimpleButton('Question 14', () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Question14()),
-                    );
-                  }),
-                  generateWidget.createSimpleButton('Question 15', () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Question15()),
-                    );
-                  }),
-                  generateWidget.createSimpleButton('Question 16', () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Question16()),
-                    );
-                  }),
-                ].map((button) {
-                  return GridTile(
-                    child: SizedBox(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: button,
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        iconTheme: const IconThemeData(color: Colors.grey, size: 28),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.search,
+              color: Colors.grey,
             ),
-          ],
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.notifications,
+              color: Colors.grey,
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 5, right: 16, bottom: 5),
+            child: const CircleAvatar(
+              backgroundImage: NetworkImage(
+                  "https://images.unsplash.com/photo-1500522144261-ea64433bbe27?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTh8fHdvbWVufGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=500&q=60"),
+            ),
+          )
+        ],
+      ),
+      drawer: const SideMenu(),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              RichText(
+                text: const TextSpan(
+                  text: "Hello ",
+                  style: TextStyle(color: kDarkBlue, fontSize: 20),
+                  children: [
+                    TextSpan(
+                      text: "BRUNO",
+                      style: TextStyle(
+                          color: kDarkBlue, fontWeight: FontWeight.bold),
+                    ),
+                    TextSpan(
+                      text: ", welcome back!",
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    "My Courses",
+                    style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "View All",
+                    style: TextStyle(color: kDarkBlue),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const CourseGrid(),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Technical Questions ",
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  InkWell(
+                    child: const Text(
+                      "View All",
+                      style: TextStyle(color: kDarkBlue, height: 2),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const TechnicalQuestions()),
+                      );
+                    },
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              const TechnicalQuestionsGrid(),
+              const SizedBox(
+                height: 15,
+              ),
+            ],
+          ),
         ),
       ),
     );

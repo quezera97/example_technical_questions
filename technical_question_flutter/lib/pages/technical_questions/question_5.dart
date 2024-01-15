@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
-import '../widget/reuse_widget.dart';
+import '../../widget/reuse_widget.dart';
 
 // ignore: must_be_immutable
 class Question5 extends StatelessWidget {

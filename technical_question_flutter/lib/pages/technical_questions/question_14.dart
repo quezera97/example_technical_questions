@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
-import '../widget/reuse_widget.dart';
+import '../../widget/reuse_widget.dart';
 
 class Question14 extends StatefulWidget {
   const Question14({super.key});

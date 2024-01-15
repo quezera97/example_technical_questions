@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
-import '../widget/reuse_widget.dart';
+import '../../widget/reuse_widget.dart';
 
-class Question16 extends StatefulWidget {
-  const Question16({super.key});
+class Question15 extends StatefulWidget {
+  const Question15({super.key});
 
   @override
-  State<Question16> createState() => _Question16State();
+  State<Question15> createState() => _Question15State();
 }
 
-class _Question16State extends State<Question16> {
-  final generateWidget = GenerateWidget();
+class _Question15State extends State<Question15> {
+  final generateWidget = GenerateWidget();  
   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Question 16'),
+      appBar: AppBar(        
+        title: const Text('Question 15'),
         backgroundColor: generateWidget.excludeWhiteColor(),
       ),
       body: Padding(
@@ -25,15 +25,16 @@ class _Question16State extends State<Question16> {
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Padding(
+            children: const [
+              Padding(
                 padding: EdgeInsets.all(15),
                 child: HtmlWidget(
                   '''
+                  
                 ''',
                 ),
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: 10),
             ]
           ),
         ),
@@ -41,3 +42,7 @@ class _Question16State extends State<Question16> {
     );
   }
 }
+
+
+
+

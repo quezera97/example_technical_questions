@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import '../dashboard.dart';
-import '../widget/generate_shape.dart';
-import '../widget/reuse_widget.dart';
+import '../../technical_questions.dart';
+import '../../widget/generate_shape.dart';
+import '../../widget/reuse_widget.dart';
 class Question3 extends StatefulWidget {
   const Question3({Key? key}) : super(key: key);
 
@@ -134,7 +134,7 @@ class _Question3State extends State<Question3> {
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => const Dashboard()),
+                    MaterialPageRoute(builder: (context) => const TechnicalQuestions()),
                     (Route<dynamic> route) => false,
                   );
                 },
